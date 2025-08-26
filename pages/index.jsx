@@ -1,115 +1,106 @@
-import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export default function Home() {
+import React from 'react'
+import Layout from '@/components/Layout/Layout'
+import HomePgaebutton from '@/components/UI/HomePgaebutton'
+import JobCard from '@/components/UI/JobCard'
+export default function index() {
   return (
-    <div
-      className={`${geistSans.className} ${geistMono.className} font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20`}
-    >
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              pages/index.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <Layout>
+      <div className="bg-white flex items-center gap-5 px-5 py-2 shadow-md overflow-hidden">
+
+        <div className='flex gap-2'>
+          <div className="flex items-center gap-2">
+            <img src="filter.png" alt="filter" />
+            <span className="text-[#29ABE2]">All Filters</span>
+          </div>
+
+          <div className="w-px h-6 bg-gray-300"></div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+        <div className='flex gap-2'>
+          <HomePgaebutton
+            leftImg={'/location.png'}
+            text={'Location'}
+            rightImg={'/dropdown.png'}
+            className="border border-[#61C1EA] text-[#61C1EA]"
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
+          <HomePgaebutton
+            leftImg={'/contact.png'}
+            text={'Contact'}
+            rightImg={'/dropdown.png'}
+            className="border border-[#61C1EA] text-[#61C1EA]"
           />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
+
+          <HomePgaebutton
+            leftImg={'/salary.png'}
+            text={'Salary'}
+            rightImg={'/dropdown.png'}
+            className="border border-[#EBEBEB] text-[#757575]"
           />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+          <HomePgaebutton
+            leftImg={'/exp.png'}
+            text={'Experience'}
+            rightImg={'/dropdown.png'}
+            className="border border-[#EBEBEB] text-[#757575]"
+          />
+          <HomePgaebutton
+            leftImg={'/language.png'}
+            text={'Languages'}
+            rightImg={'/dropdown.png'}
+            className="border border-[#EBEBEB] text-[#757575]"
+          />
+          <HomePgaebutton
+            leftImg={'/rating.png'}
+            text={'Rating level'}
+            rightImg={'/dropdown.png'}
+            className="border border-[#EBEBEB] text-[#757575]"
+          />
+          <HomePgaebutton
+            leftImg={'/workstyle.png'}
+            text={'Work style'}
+            rightImg={'/dropdown.png'}
+            className="border border-[#EBEBEB] text-[#757575]"
+          />
+          <button className="flex items-center gap-2 bg-[#29ABE2] text-white px-4 py-2 rounded-md shadow hover:bg-[#1e90c2] transition">
+            <img src="savesearch.png" alt="save" className="w-4 h-4" />
+            <span className="text-sm font-medium">SAVE SEARCH</span>
+          </button>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-[60%_40%] min-h-screen">
+        <div className="px-5 py-3">
+          <span className="text-[#757575] text-sm">15 results found</span>
+
+          <div className="flex items-center justify-between py-3">
+            <div className="flex items-center gap-4">
+              <div className="flex rounded-md bg-gray-100 p-2 overflow-hidden">
+                <button className="px-4 py-2 bg-[#29ABE2] rounded-md text-white text-sm font-medium">
+                  Jobs
+                </button>
+                <button className="px-4 py-2 text-black text-sm font-medium hover:bg-gray-100">
+                  Accommodations
+                </button>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-1 text-sm text-gray-600 cursor-pointer">
+              <img src="/sort.png" alt="sort" />
+              <span>Sort by:</span>
+              <span className="font-medium">Most recent</span>
+              <img src="/arrow.png" alt="sort" />
+            </div>
+          </div>
+
+          <JobCard />
+          <JobCard />
+        </div>
+        <div className="hidden lg:block relative">
+          <img
+            src="/jobcard/map.png"
+            alt="map"
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+    </Layout>
+  )
 }
