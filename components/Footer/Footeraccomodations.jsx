@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react'
 
-export default function Footer() {
+export default function Footeraccomodations() {
     return (
         <footer className="w-full flex flex-col text-white">
             {/* Top Links Section */}
-            <div className="w-full bg-[#29ABE2] px-4 py-3">
+            <div className="w-full bg-[#FFAB24] px-4 py-3">
                 <div className="grid grid-cols-2 sm:flex sm:flex-wrap sm:justify-center gap-3 sm:gap-4 md:gap-6 text-xs sm:text-sm text-left sm:text-center">
                     <a href="#" className="hover:underline">100% secured payments</a>
                     <a href="#" className="hover:underline">GCU</a>
@@ -18,7 +18,7 @@ export default function Footer() {
             </div>
 
             {/* Bottom Section */}
-            <div className="w-full bg-[#61C1EA] flex flex-col sm:flex-row items-center sm:items-center justify-between px-4 sm:px-8 md:px-12 py-3 gap-3">
+            <div className="w-full bg-[#FFC973] flex flex-col sm:flex-row items-center sm:items-center justify-between px-4 sm:px-8 md:px-12 py-3 gap-3">
                 {/* Left Section */}
                 <div className="text-xs sm:text-sm text-left w-full sm:w-auto">
                     © Everywhere Jobs

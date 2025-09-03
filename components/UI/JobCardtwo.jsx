@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function JobCard() {
+export default function JobCardtwo() {
     return (
         <div className="bg-white rounded-[10px] shadow-md border border-gray-200 overflow-hidden mb-5">
             {/* flex-col on mobile, flex-row on larger screens */}
@@ -14,7 +14,7 @@ export default function JobCard() {
                         className="w-full sm:w-48 h-auto object-cover rounded-lg"
                     />
                     <div className="absolute top-1 right-1 flex -space-x-2">
-                        <img src="/badge2.png" alt="badge2" className="w-7 h-7 rounded-full border-2 border-white" />
+                        {/* <img src="/badge2.png" alt="badge2" className="w-7 h-7 rounded-full border-2 border-white" /> */}
                         <img src="/badge1.png" alt="badge1" className="w-7 h-7 rounded-full border-2 border-white" />
                     </div>
                 </div>
@@ -27,7 +27,7 @@ export default function JobCard() {
                             <h4 className="text-lg font-semibold text-black">
                                 Sales Manager{" "}
                                 <span className="ml-2 text-sm text-gray-500 font-normal bg-gray-100 px-2 py-0.5 rounded-full">
-                                    From 02/04/25
+                                    ASAP
                                 </span>
                             </h4>
                         </div>
@@ -49,9 +49,6 @@ export default function JobCard() {
                         </span>
                         <span className="flex items-center gap-1 text-black">
                             <img src="/jobcard/loading.png" alt="experience" /> 3 Years
-                        </span>
-                        <span className="flex items-center gap-1 text-black">
-                            <img src="/jobcard/home.png" alt="housing" /> Provides Housing
                         </span>
                     </div>
 
