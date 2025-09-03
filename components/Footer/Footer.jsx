@@ -24,11 +24,11 @@ export default function Footer() {
                 </div>
 
                 <div className="flex items-center justify-center gap-3 mt-2 md:mt-0">
-                    <img src="/footer/facebook.png" alt="Facebook" className="w-5 h-5 md:w-6 md:h-6 cursor-pointer" />
-                    <img src="/footer/twitter.png" alt="X" className="w-5 h-5 md:w-6 md:h-6 cursor-pointer" />
-                    <img src="/footer/instagram.png" alt="Instagram" className="w-5 h-5 md:w-6 md:h-6 cursor-pointer" />
-                    <img src="/footer/linkedin.png" alt="LinkedIn" className="w-5 h-5 md:w-6 md:h-6 cursor-pointer" />
-                    <img src="/footer/youtube.png" alt="YouTube" className="w-5 h-5 md:w-6 md:h-6 cursor-pointer" />
+                    <img src="/footer/facebook.png" alt="Facebook" className=" cursor-pointer" />
+                    <img src="/footer/twitter.png" alt="X" className=" cursor-pointer" />
+                    <img src="/footer/instagram.png" alt="Instagram" className=" cursor-pointer" />
+                    <img src="/footer/linkedin.png" alt="LinkedIn" className=" cursor-pointer" />
+                    <img src="/footer/youtube.png" alt="YouTube" className=" cursor-pointer" />
                 </div>
             </div>
         </footer>

@@ -13,59 +13,57 @@ export default function Index() {
       </div>
 
       {/* Sticky Filter Bar */}
-      <div className="sticky top-[64px] z-40 bg-white shadow-md px-5 py-2 flex items-center justify-between">
+      <div className="sticky top-[64px] z-40 bg-white shadow-md px-5 py-2 flex items-center gap-4">
         {/* Left Filter */}
         <div className="flex items-center gap-2 flex-shrink-0">
           <img src="filter.png" alt="filter" />
           <span className="text-[#29ABE2]">All Filters</span>
         </div>
 
-        {/* Scrollable Filter Buttons */}
-        <div className="flex-1 overflow-x-auto mx-4">
-          <div className="flex gap-2 w-max">
-            <HomePgaebutton
-              leftImg={'/location.png'}
-              text={'Location'}
-              rightImg={'/dropdown.png'}
-              className="border border-[#61C1EA] text-[#61C1EA]"
-            />
-            <HomePgaebutton
-              leftImg={'/contact.png'}
-              text={'Contact'}
-              rightImg={'/dropdown.png'}
-              className="border border-[#61C1EA] text-[#61C1EA]"
-            />
-            <HomePgaebutton
-              leftImg={'/salary.png'}
-              text={'Salary'}
-              rightImg={'/dropdown.png'}
-              className="border border-[#EBEBEB] text-[#757575]"
-            />
-            <HomePgaebutton
-              leftImg={'/exp.png'}
-              text={'Experience'}
-              rightImg={'/dropdown.png'}
-              className="border border-[#EBEBEB] text-[#757575]"
-            />
-            <HomePgaebutton
-              leftImg={'/language.png'}
-              text={'Languages'}
-              rightImg={'/dropdown.png'}
-              className="border border-[#EBEBEB] text-[#757575]"
-            />
-            <HomePgaebutton
-              leftImg={'/rating.png'}
-              text={'Rating level'}
-              rightImg={'/dropdown.png'}
-              className="border border-[#EBEBEB] text-[#757575]"
-            />
-            <HomePgaebutton
-              leftImg={'/workstyle.png'}
-              text={'Work style'}
-              rightImg={'/dropdown.png'}
-              className="border border-[#EBEBEB] text-[#757575]"
-            />
-          </div>
+        {/* Center Filter Buttons (stretch to fill) */}
+        <div className="flex flex-1 gap-2">
+          <HomePgaebutton
+            leftImg={'/location.png'}
+            text={'Location'}
+            rightImg={'/dropdown.png'}
+            className="flex-1 border border-[#61C1EA] text-[#61C1EA]"
+          />
+          <HomePgaebutton
+            leftImg={'/contact.png'}
+            text={'Contact'}
+            rightImg={'/dropdown.png'}
+            className="flex-1 border border-[#61C1EA] text-[#61C1EA]"
+          />
+          <HomePgaebutton
+            leftImg={'/salary.png'}
+            text={'Salary'}
+            rightImg={'/dropdown.png'}
+            className="flex-1 border border-[#EBEBEB] text-[#757575]"
+          />
+          <HomePgaebutton
+            leftImg={'/exp.png'}
+            text={'Experience'}
+            rightImg={'/dropdown.png'}
+            className="flex-1 border border-[#EBEBEB] text-[#757575]"
+          />
+          <HomePgaebutton
+            leftImg={'/language.png'}
+            text={'Languages'}
+            rightImg={'/dropdown.png'}
+            className="flex-1 border border-[#EBEBEB] text-[#757575]"
+          />
+          <HomePgaebutton
+            leftImg={'/rating.png'}
+            text={'Rating level'}
+            rightImg={'/dropdown.png'}
+            className="flex-1 border border-[#EBEBEB] text-[#757575]"
+          />
+          <HomePgaebutton
+            leftImg={'/workstyle.png'}
+            text={'Work style'}
+            rightImg={'/dropdown.png'}
+            className="flex-1 border border-[#EBEBEB] text-[#757575]"
+          />
         </div>
 
         {/* Right Save Search */}
@@ -76,6 +74,7 @@ export default function Index() {
           </button>
         </div>
       </div>
+
 
       {/* Main Content */}
       <div className="flex flex-1 overflow-hidden">
