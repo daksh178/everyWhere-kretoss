@@ -26,7 +26,7 @@ export default function JobCardAccomodations() {
                             <h3 className="text-lg font-semibold text-black">500 € / month</h3>
                             <h4 className="text-base font-medium text-black">
                                 Flat with 2 bedrooms{" "}
-                                <span className="ml-2 text-sm text-gray-500 font-normal bg-gray-100 px-2 py-0.5 rounded">
+                                <span className="ml-2 text-sm text-gray-500 font-normal bg-gray-100 px-2 py-0.5 rounded-full">
                                     From 02/04/25
                                 </span>
                             </h4>

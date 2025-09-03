@@ -26,7 +26,7 @@ export default function JobCardtwo() {
                             <h3 className="text-base font-medium text-black">Dunkin</h3>
                             <h4 className="text-lg font-semibold text-black">
                                 Sales Manager{" "}
-                                <span className="ml-2 text-sm text-gray-500 font-normal bg-gray-100 px-2 py-0.5 rounded">
+                                <span className="ml-2 text-sm text-gray-500 font-normal bg-gray-100 px-2 py-0.5 rounded-full">
                                     ASAP
                                 </span>
                             </h4>
