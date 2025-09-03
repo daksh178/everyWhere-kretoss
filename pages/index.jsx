@@ -4,8 +4,11 @@ import Navbar from "@/components/Navbar/Navbar"
 import HomePgaebutton from "@/components/UI/HomePgaebutton"
 import JobCard from "@/components/UI/JobCard"
 import { ChevronLeft, ChevronRight, X } from "lucide-react"
-
+import { useRouter } from "next/router"
+import JobCardtwo from "@/components/UI/JobCardtwo"
 export default function Index() {
+  const router = useRouter();
+  const currentPath = router.pathname;
   const scrollRef = useRef(null)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(false)
@@ -159,10 +162,27 @@ export default function Index() {
             {/* Left section */}
             <div className="flex items-center gap-4">
               <div className="flex rounded-md bg-gray-100 p-2 overflow-hidden">
-                <button className="px-4 py-2 bg-[#29ABE2] rounded-md text-white text-sm font-medium">
+                {/* Jobs button */}
+                <button
+                  onClick={() => router.push("/")}
+                  className={`px-4 py-2 text-sm font-medium rounded-md 
+                                        ${currentPath === "/"
+                      ? "bg-[#29ABE2] text-white"
+                      : "text-black hover:bg-gray-100"
+                    }`}
+                >
                   Jobs
                 </button>
-                <button className="px-4 py-2 text-black text-sm font-medium hover:bg-gray-100">
+
+                {/* Accommodations button */}
+                <button
+                  onClick={() => router.push("/accomodationsPage")}
+                  className={`px-4 py-2 text-sm font-medium rounded-md 
+                                        ${currentPath === "/accomodationsPage"
+                      ? "bg-[#FFAB24] text-white"
+                      : "text-black hover:bg-gray-100"
+                    }`}
+                >
                   Accommodations
                 </button>
               </div>
@@ -178,9 +198,7 @@ export default function Index() {
           </div>
 
           <JobCard />
-          <JobCard />
-          <JobCard />
-          <JobCard />
+          <JobCardtwo />
         </div>
 
         {/* Right Column (fixed map) */}

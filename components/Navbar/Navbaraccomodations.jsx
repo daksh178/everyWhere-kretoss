@@ -1,25 +1,24 @@
-
-import React from "react";
 import Image from "next/image";
 import { Search } from "lucide-react";
-export default function Navbar() {
+
+export default function Navbaraccomodations() {
     return (
         <nav className="w-full h-[80px] border border-[#EBEBEB] shadow-sm px-2 flex items-center justify-between bg-white">
             <div className="flex items-center flex-1">
                 <Image
-                    src="/nav/logo.png"
+                    src="/nav/AccLogo.png"
                     alt="Logo"
                     width={200}
                     height={45}
-                    className="object-contain"
+                    className="object-contain mt-2"
                 />
 
                 <div className="hidden md:flex flex-1">
                     <div className="w-full relative">
-                        <Search className="absolute  text-[#29ABE2] left-3 top-1/2 transform -translate-y-1/2 w-5 h-5" />
+                        <Search className="absolute  text-[#FFAB24] left-3 top-1/2 transform -translate-y-1/2 w-5 h-5" />
                         <input
                             type="text"
-                            placeholder="Job name, Sector, Keyword ..."
+                            placeholder="Location, Type, Keyword ..."
                             className="w-[612px] pl-10 pr-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
                         />
                     </div>
@@ -27,7 +26,7 @@ export default function Navbar() {
             </div>
 
             <div className="flex items-center gap-4">
-                <button className="hidden md:block bg-white border border-gray-200 text-[#29ABE2] font-semibold px-4 py-2 rounded-lg hover:bg-blue-50 transition">
+                <button className="hidden md:block bg-white border border-gray-200 text-[#FFAB24] font-semibold px-4 py-2 rounded-lg hover:bg-blue-50 transition">
                     PUBLISH AN OFFER
                 </button>
 
@@ -52,5 +51,5 @@ export default function Navbar() {
                 </div>
             </div>
         </nav>
-    );
+    )
 }
