@@ -26,11 +26,11 @@ export default function Footer() {
 
                 {/* Right Section - Socials */}
                 <div className="flex items-center justify-start sm:justify-end gap-4 w-full sm:w-auto">
-                    <img src="/footer/facebook.png" alt="Facebook" className="w-5 h-5 sm:w-6 sm:h-6 cursor-pointer" />
-                    <img src="/footer/twitter.png" alt="X" className="w-5 h-5 sm:w-6 sm:h-6 cursor-pointer" />
-                    <img src="/footer/instagram.png" alt="Instagram" className="w-5 h-5 sm:w-6 sm:h-6 cursor-pointer" />
-                    <img src="/footer/linkedin.png" alt="LinkedIn" className="w-5 h-5 sm:w-6 sm:h-6 cursor-pointer" />
-                    <img src="/footer/youtube.png" alt="YouTube" className="w-5 h-5 sm:w-6 sm:h-6 cursor-pointer" />
+                    <img src="/footer/facebook.png" alt="Facebook" className=" cursor-pointer" />
+                    <img src="/footer/twitter.png" alt="X" className=" cursor-pointer" />
+                    <img src="/footer/instagram.png" alt="Instagram" className=" cursor-pointer" />
+                    <img src="/footer/linkedin.png" alt="LinkedIn" className=" cursor-pointer" />
+                    <img src="/footer/youtube.png" alt="YouTube" className=" cursor-pointer" />
                 </div>
             </div>
         </footer>

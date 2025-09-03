@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function JobCardAccomodations() {
     return (
-        <div className="bg-white rounded-2xl shadow-md border border-gray-200 overflow-hidden mb-5">
+        <div className="bg-white rounded-[10px] shadow-md border border-gray-200 overflow-hidden mb-5">
             {/* flex-col on mobile, flex-row on larger screens */}
             <div className="flex flex-col sm:flex-row">
 

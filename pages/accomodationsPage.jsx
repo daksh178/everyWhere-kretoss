@@ -6,6 +6,11 @@ import JobCard from "@/components/UI/JobCard"
 import JobCardAccomodations from "@/components/UI/JobCardAccomodations"
 import { ChevronLeft, ChevronRight, X } from "lucide-react"
 import { useRouter } from "next/router"
+import dynamic from "next/dynamic"
+
+const CustomMap = dynamic(() => import("@/components/CustomMap/CustomMap"), {
+    ssr: false,
+});
 
 export default function accomodationsPage() {
     const router = useRouter();
@@ -42,13 +47,14 @@ export default function accomodationsPage() {
     }
 
     const filterButtons = [
-        { leftImg: "/location.png", text: "Location" },
-        { leftImg: "/contact.png", text: "Contact" },
-        { leftImg: "/salary.png", text: "Salary" },
-        { leftImg: "/exp.png", text: "Experience" },
-        { leftImg: "/language.png", text: "Languages" },
-        { leftImg: "/rating.png", text: "Rating level" },
-        { leftImg: "/workstyle.png", text: "Work style" },
+        { leftImg: "/accomodationsPage/Type.png", text: "Type" },
+        { leftImg: "/accomodationsPage/Price.png", text: "Price" },
+        { leftImg: "/accomodationsPage/Duration.png", text: "Duration" },
+        { leftImg: "/accomodationsPage/Locals.png", text: "Locals" },
+        { leftImg: "/accomodationsPage/Area.png", text: "Area" },
+        { leftImg: "/accomodationsPage/Bedrooms.png", text: "Bedrooms" },
+        { leftImg: "/accomodationsPage/Furnished.png", text: "Furnished" },
+        { leftImg: "/accomodationsPage/Others.png", text: "Others" },
     ]
 
     return (
@@ -69,7 +75,7 @@ export default function accomodationsPage() {
                         <img src="filter.png" alt="filter" className="w-4 h-4" />
                         <span className="font-medium">Filters</span>
                     </button>
-                    <button className="w-1/2 flex items-center justify-center gap-2 bg-[#FFAB24] text-white px-4 py-2 rounded-md shadow hover:bg-[#1e90c2] transition">
+                    <button className="w-1/2 flex items-center justify-center gap-2 bg-[#FFAB24] text-white px-4 py-2 rounded-[10px] shadow hover:bg-[#1e90c2] transition">
                         <img src="savesearch.png" alt="save" className="w-4 h-4" />
                         <span className="text-sm font-medium">SAVE SEARCH</span>
                     </button>
@@ -119,7 +125,7 @@ export default function accomodationsPage() {
 
                 {/* Save Search (desktop only) */}
                 <div className="hidden sm:flex flex-shrink-0">
-                    <button className="flex items-center gap-2 bg-[#FFAB24] text-white px-4 py-2 rounded-md shadow hover:bg-[#1e90c2] transition whitespace-nowrap">
+                    <button className="flex items-center gap-2 bg-[#FFAB24] text-white px-4 py-2 rounded-[10px] shadow hover:bg-[#1e90c2] transition whitespace-nowrap">
                         <img src="savesearch.png" alt="save" className="w-4 h-4" />
                         <span className="text-sm font-medium">SAVE SEARCH</span>
                     </button>
@@ -204,7 +210,9 @@ export default function accomodationsPage() {
 
                 {/* Right Column (fixed map) */}
                 <div className="hidden lg:block w-2/5">
-                    <img src="/jobcard/map.png" alt="map" className="w-full h-full object-cover" />
+                    <div className="h-[calc(100vh-210px)]">
+                        <CustomMap />
+                    </div>
                 </div>
             </div>
 
