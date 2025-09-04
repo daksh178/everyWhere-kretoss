@@ -565,30 +565,40 @@ export default function Profileseenbyvisitors() {
                             {similarprofiles.map((profile, index) => (
                                 <div
                                     key={index}
-                                    className="flex flex-col min-w-[265px] min-h-[210px] justify-center items-center p-5 border border-[#CECECE] rounded-[20px] bg-white shadow-sm flex-shrink-0 text-center"
+                                    className="flex flex-col min-w-[265px] min-h-[210px] justify-start items-center p-0 border border-[#CECECE] rounded-[20px] bg-white shadow-sm flex-shrink-0 text-center"
                                 >
-                                    {/* Profile Image */}
-                                    <div className='relative'>
-                                        <img
-                                            src={profile.img}
-                                            className="rounded-full w-[50px] h-[50px] object-cover"
-                                            alt={profile.name}
-                                        />
-                                        <div className="absolute top-0 right-0 flex -space-x-2">
-                                            <img src="/badge1.png" alt="badge1" className="w-5 h-5 rounded-full border-2 border-white" />
+                                    {/* Top gradient section */}
+                                    {/* Top gradient section */}
+                                    <div
+                                        className="w-full h-[69px] rounded-t-[20px] flex justify-center items-center relative"
+                                        style={{
+                                            background: "linear-gradient(107.8deg, rgba(242, 254, 254, 0.2) 0%, rgba(50, 211, 213, 0.2) 50%, rgba(41, 255, 198, 0.2) 100%)"
+                                        }}
+                                    >
+                                        <div className='relative'>
+                                            <img
+                                                src={profile.img}
+                                                className="rounded-full w-[50px] h-[50px] object-cover"
+                                                alt={profile.name}
+                                            />
+                                            <div className="absolute top-0 right-0">
+                                                <img src="/badge1.png" alt="badge1" className="w-5 h-5 rounded-full border-2 border-white" />
+                                            </div>
                                         </div>
                                     </div>
 
-                                    {/* Name and Text */}
-                                    <h2 className="text-[#333333] text-[14px] font-semibold">{profile.name}</h2>
-                                    <span className="text-[#757575] text-[12px]">{profile.text}</span>
+                                    {/* Bottom white section */}
+                                    <div className="flex flex-col justify-center items-center gap-1 py-3">
+                                        <h2 className="text-[#333333] text-[14px] font-semibold">{profile.name}</h2>
+                                        <span className="text-[#757575] text-[12px]">{profile.text}</span>
 
-                                    {/* Stars */}
-                                    <div className="flex justify-center">
-                                        {[...Array(4)].map((_, i) => (
-                                            <span key={i} className="text-[#FFAD2A] text-[24px]">★</span>
-                                        ))}
-                                        <span className="text-[#EDEDED] text-[24px]" >★</span>
+                                        {/* Stars */}
+                                        <div className="flex justify-center">
+                                            {[...Array(4)].map((_, i) => (
+                                                <span key={i} className="text-[#FFAD2A] text-[24px]">★</span>
+                                            ))}
+                                            <span className="text-[#EDEDED] text-[24px]" >★</span>
+                                        </div>
                                     </div>
                                 </div>
                             ))}
