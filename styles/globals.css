@@ -3,6 +3,7 @@
 
 body {
   font-family: "Poppins", sans-serif;
+  background-color: #eeeeee;
 }
 
 button {
@@ -39,4 +40,13 @@ body::-webkit-scrollbar-track {
 .scrollable::-webkit-scrollbar-thumb {
   background-color: #9ca3af;
   border-radius: 3px;
+}
+
+/* Hide scrollbar but keep scrolling */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
