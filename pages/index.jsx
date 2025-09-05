@@ -57,16 +57,16 @@ export default function Index() {
     { leftImg: "/workstyle.png", text: "Work style" },
   ]
 
-const toggleFullscreen = () => {
-  const mapEl = document.querySelector(".custom-map-container"); // className of map container
-  if (!mapEl) return;
+  const toggleFullscreen = () => {
+    const mapEl = document.querySelector(".custom-map-container"); // className of map container
+    if (!mapEl) return;
 
-  if (!document.fullscreenElement) {
-    mapEl.requestFullscreen();
-  } else {
-    document.exitFullscreen();
-  }
-};
+    if (!document.fullscreenElement) {
+      mapEl.requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
+  };
 
 
   return (
@@ -240,13 +240,30 @@ const toggleFullscreen = () => {
         {/* Right Column (fixed map) */}
         <div className="relative hidden lg:block w-2/5">
           <div className="h-[calc(100vh-210px)] custom-map-container">
-            <CustomMap/>
+            <CustomMap />
           </div>
           <div
             onClick={toggleFullscreen}
             className="absolute top-[17px] right-[17px] z-[1000] rounded-[12px] p-[10px] shadow-[0_2px_8px_rgba(0,0,0,0.1)] flex items-center justify-center cursor-pointer transition-all duration-300 ease-in-out"
           >
             <img src="./Stepper.png" alt="Fullscreen" className="w-[42px] h-[42px]" />
+          </div>
+
+          <div
+            id="show-accommodations-btn"
+            class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white px-[15px] py-[10px] rounded-[10px] shadow-[0_3px_12px_rgba(0,0,0,0.15)] text-[#00a0df] text-[12px] flex items-center gap-[10px] z-[999]"
+          >
+            <input
+              type="checkbox"
+              id="accommodation-toggle"
+              class="peer appearance-none w-4 h-4 border border-[#00a0df] rounded-sm cursor-pointer 
+           checked:bg-[#00a0df] checked:border-[#00a0df]
+           checked:after:content-['✔'] checked:after:text-white checked:after:text-[10px] 
+           checked:after:flex checked:after:items-center checked:after:justify-center"
+            />
+            <label for="accommodation-toggle" class="cursor-pointer select-none">
+              Show nearby accommodations
+            </label>
           </div>
 
           {/* <div
