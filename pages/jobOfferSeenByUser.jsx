@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 // import Layout from '@/components/Layout/Layout/'
 import Mainlayout from '@/components/MainLayout/Mainlayout';
 import { MapPin, Clock, Calendar, Star, Globe, Users, Coffee, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -23,18 +23,57 @@ export default function jobOfferSeenByUser() {
         { id: 5, title: "Job Title Will Go Here", company: "Company name here" },
     ];
 
-    const handleScrollLeft = () => {
-        if (scrollRef.current) {
-            scrollRef.current.scrollBy({ left: -280, behavior: 'smooth' });
-        }
-    };
+    const similarprofiles
+        = [
+            {
+                img: "/Group 1000009809.png",
+                name: "Job Title Will Go Here",
+                text: "Company name here",
+            },
+            {
+                img: "/Group 1000009809.png",
+                name: "Job Title Will Go Here",
+                text: "Company name here",
+            },
+            {
+                img: "/Group 1000009809.png",
+                name: "Job Title Will Go Here",
+                text: "Company name here",
+            },
+            {
+                img: "/Group 1000009809.png",
+                name: "Job Title Will Go Here",
+                text: "Company name here",
+            },
+        ]
+    const similarProfilesRef = useRef(null)
+    const [canScrollLeftProfiles, setCanScrollLeftProfiles] = useState(false)
+    const [canScrollRightProfiles, setCanScrollRightProfiles] = useState(false)
 
-    const handleScrollRight = () => {
-        if (scrollRef.current) {
-            scrollRef.current.scrollBy({ left: 280, behavior: 'smooth' });
-        }
-    };
+    const updateProfilesScrollButtons = () => {
+        if (!similarProfilesRef.current) return
+        const { scrollLeft, scrollWidth, clientWidth } = similarProfilesRef.current
+        setCanScrollLeftProfiles(scrollLeft > 0)
+        setCanScrollRightProfiles(scrollLeft + clientWidth < scrollWidth)
+    }
 
+    useEffect(() => {
+        updateProfilesScrollButtons()
+        if (similarProfilesRef.current) {
+            similarProfilesRef.current.addEventListener("scroll", updateProfilesScrollButtons)
+            return () => similarProfilesRef.current.removeEventListener("scroll", updateProfilesScrollButtons)
+        }
+    }, [])
+
+    const scrollProfiles = (direction) => {
+        if (!similarProfilesRef.current) return
+        const { scrollLeft, clientWidth } = similarProfilesRef.current
+        const scrollAmount = direction === "left" ? -clientWidth : clientWidth
+        similarProfilesRef.current.scrollTo({
+            left: scrollLeft + scrollAmount,
+            behavior: "smooth",
+        })
+    }
     const handleSkillLevelChange = (event) => {
         setSkillLevel(parseInt(event.target.value));
     };
@@ -94,6 +133,18 @@ export default function jobOfferSeenByUser() {
             </button>
         );
     };
+
+    const toggleFullscreen = () => {
+        const mapEl = document.querySelector(".custom-map-container"); // className of map container
+        if (!mapEl) return;
+
+        if (!document.fullscreenElement) {
+            mapEl.requestFullscreen();
+        } else {
+            document.exitFullscreen();
+        }
+    };
+
 
     return (
         <Mainlayout>
@@ -196,7 +247,33 @@ export default function jobOfferSeenByUser() {
                                                 alt="Map"
                                                 className="w-full h-full object-cover"
                                             /> */}
-                                            <CustomMap />
+                                            <div className="h-[calc(100vh-210px)] custom-map-container">
+                                                <CustomMap />
+                                            </div>
+                                            <div
+                                                onClick={toggleFullscreen}
+                                                className="absolute top-[30px] right-[17px] z-[1000] rounded-[12px] p-[10px] flex items-center justify-center cursor-pointer transition-all duration-300 ease-in-out"
+                                            >
+                                                <img src="./Stepper.png" alt="Fullscreen" className="w-[42px] h-[42px]" />
+                                            </div>
+
+                                            <div
+                                                id="show-accommodations-btn"
+                                                class="h-[37px] absolute bottom-2 right-12 bg-white px-[15px] py-[10px] rounded-[10px] shadow-[0_3px_12px_rgba(0,0,0,0.15)] text-[#00a0df] text-[12px] flex items-center gap-[10px] z-[999] whitespace-nowrap"
+                                            >
+                                                <input
+                                                    type="checkbox"
+                                                    id="accommodation-toggle"
+                                                    class="peer appearance-none w-4 h-4 border border-[#00a0df] rounded-sm cursor-pointer 
+    checked:bg-[#00a0df] checked:border-[#00a0df]
+    checked:after:content-['✔'] checked:after:text-white checked:after:text-[10px] 
+    checked:after:flex checked:after:items-center checked:after:justify-center"
+                                                />
+                                                <label htmlFor="accommodation-toggle" class="cursor-pointer select-none">
+                                                    Show nearby accommodations
+                                                </label>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -563,69 +640,84 @@ export default function jobOfferSeenByUser() {
 
                             </div>
 
-                            {/* Similar Jobs */}
-                            <div className="bg-white mx-auto w-[982px] h-[329px] flex flex-col justify-start items-center bg-global-12 rounded-[24px] shadow-[0px_4px_6px_#75757519] px-[20px] py-[20px]">
-                                <h3 className="font-semibold text-gray-900 mb-4">Similar Jobs</h3>
+                            {/* Similar jobs*/}
+                            <div className="bg-white rounded-[25px] shadow-md p-6 flex flex-col items-center max-w-[982px] w-[982px] h-[329px] relative">
+                                <h1 className="text-[16px] text-[#000000] font-semibold mb-4">
+                                    Similar Profiles
+                                </h1>
 
-                                {/* Scrollable Section */}
-                                <div className="bg-background mx-auto w-full max-w-[982px] min-h-[329px] flex flex-col justify-start items-center rounded-[24px] shadow-[0px_4px_6px_hsl(var(--job-shadow))] px-5 py-5 relative">
-                                    {/* Scrollable Section */}
-                                    <div className="relative w-full overflow-hidden">
+                                {/* Left Scroll */}
+                                {canScrollLeftProfiles && (
+                                    <button
+                                        onClick={() => scrollProfiles("left")}
+                                        className="absolute left-2 top-1/2 -translate-y-1/2 z-10 p-2"
+                                    >
+                                        <ChevronLeft className="w-5 h-5 text-gray-700" />
+                                    </button>
+                                )}
+
+                                {/* Right Scroll */}
+                                {canScrollRightProfiles && (
+                                    <button
+                                        onClick={() => scrollProfiles("right")}
+                                        className="absolute right-2 top-1/2 -translate-y-1/2 z-10 p-"
+                                    >
+                                        <ChevronRight className="w-5 h-5 text-gray-700" />
+                                    </button>
+                                )}
+
+                                {/* Scrollable container */}
+                                <div
+                                    ref={similarProfilesRef}
+                                    className="flex gap-5 overflow-x-auto scroll-smooth w-full px-2 scrollbar-hide"
+                                >
+                                    {similarprofiles.map((profile, index) => (
                                         <div
-                                            ref={scrollRef}
-                                            className="flex space-x-4 overflow-x-auto scrollbar-hide pb-2"
-                                            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                                            key={index}
+                                            className="flex flex-col min-w-[265px] min-h-[210px] justify-start items-center p-0 border border-[#CECECE] rounded-[20px] bg-white shadow-sm flex-shrink-0 text-center"
                                         >
-                                            {jobData.map((job) => (
-                                                <div
-                                                    key={job.id}
-                                                    className="min-w-[265px] h-[228px] border border-border rounded-[20px] bg-gradient-to-br from-job-card-gradient-from to-job-card-gradient-to p-4 flex flex-col justify-between"
-                                                >
-                                                    <div className="flex items-center mb-3">
-                                                        <div className="w-12 h-12 rounded-full bg-background flex items-center justify-center mr-3 shadow-sm">
-                                                            <img
-                                                                src="/Group 1000009809.png"
-                                                                alt="Company Logo"
-                                                                className="w-8 h-8 rounded-full object-cover"
-                                                            />
-                                                        </div>
-                                                        <div>
-                                                            <p className="text-job-text-primary font-medium text-sm leading-tight">
-                                                                {job.title}
-                                                            </p>
-                                                            <p className="text-job-text-secondary text-xs mt-1">
-                                                                {job.company}
-                                                            </p>
-                                                        </div>
+                                            {/* Top gradient section */}
+                                            {/* Top gradient section */}
+                                            <div
+                                                className="w-full h-[69px] rounded-t-[20px] flex justify-center items-center relative"
+                                                style={{
+                                                    background: "linear-gradient(107.8deg, rgba(242, 254, 254, 0.2) 0%, rgba(50, 211, 213, 0.2) 50%, rgba(41, 255, 198, 0.2) 100%)"
+                                                }}
+                                            >
+                                                <div className="absolute top-[34px]">
+                                                    <div className="relative">
+                                                        <img
+                                                            src={profile.img}
+                                                            className="rounded-full w-[65px] h-[65px] object-cover "
+                                                            alt={profile.name}
+                                                        />
                                                     </div>
+                                                </div>
+                                            </div>
 
-                                                    <button className="w-full flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg text-sm font-medium">
-                                                        <img src="/frame.png" alt="Icon" className="w-4 h-4" />
+                                            <div className="flex flex-col justify-center items-center gap-1 pt-10">
+                                                <h2 className="text-[#333333] text-[14px] font-semibold">
+                                                    {profile.name}
+                                                </h2>
+                                                <span className="text-[#757575] text-[12px]">{profile.text}</span>
+                                                {/* Stars */}
+                                                <div className="flex justify-center gap-[8.4px] mt-[10px]">
+                                                    <button className="w-[229px] h-[38px] flex items-center justify-center gap-2 bg-[#00C1F7] text-white font-medium text-sm px-4 py-2 rounded-lg hover:bg-[#00A8E0] transition">
+                                                        <img src="/frame.png" alt="Plane Icon" className="w-4 h-4" />
                                                         Apply
+                                                        <img src="/arrow-left.png" alt="Arrow" className="w-[7px] h-[12px] ml-1" /> {/* Arrow image */}
                                                     </button>
                                                 </div>
-                                            ))}
+                                            </div>
                                         </div>
-                                    </div>
-
-                                    {/* Navigation Arrows */}
-                                    <button
-                                        className="absolute top-1/2 left-2 transform -translate-y-1/2 w-[30px] h-[25px] bg-job-nav hover:bg-job-nav-hover rounded-full flex items-center justify-center cursor-pointer transition-colors duration-200 shadow-sm"
-                                        onClick={handleScrollLeft}
-                                        aria-label="Scroll left"
-                                    >
-                                        <ChevronLeft className="w-4 h-4 text-job-text-primary" />
-                                    </button>
-
-                                    <button
-                                        className="absolute top-1/2 right-2 transform -translate-y-1/2 w-[30px] h-[30px] bg-job-nav hover:bg-job-nav-hover rounded-full flex items-center justify-center cursor-pointer transition-colors duration-200 shadow-sm"
-                                        onClick={handleScrollRight}
-                                        aria-label="Scroll right"
-                                    >
-                                        <ChevronRight className="w-4 h-4 text-job-text-primary" />
-                                    </button>
+                                    ))}
                                 </div>
+
                             </div>
+
+
+
+
                         </div>
 
                         {/* Right Sidebar */}

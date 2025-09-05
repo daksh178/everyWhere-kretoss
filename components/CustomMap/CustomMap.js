@@ -84,7 +84,7 @@ export default function CustomMap() {
 
         {/* Zoom control at bottom-right */}
         <ZoomControl position="bottomright" />
-        <div
+        {/* <div
           id="show-accommodations-btn"
           class="absolute bottom-9 left-1/2 -translate-x-1/2 bg-white px-[15px] py-[10px] rounded-[10px] shadow-[0_3px_12px_rgba(0,0,0,0.15)] text-[#00a0df] text-[12px] flex items-center gap-[10px] z-[999]"
         >
@@ -99,7 +99,9 @@ export default function CustomMap() {
           <label for="accommodation-toggle" class="cursor-pointer select-none">
             Show nearby accommodations
           </label>
-        </div>
+        </div> */}
+
+        
       </MapContainer>
       {/* ✅ Custom fullscreen button */}
       {/* <div
