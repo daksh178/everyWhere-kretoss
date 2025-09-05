@@ -10,12 +10,7 @@ export default function Layout({ children }) {
             </header>
 
             <main className="flex-1">
-                <div className="absolute top-0 left-0 w-full -z-10">
-                    <img src="/hero_bg.png" alt="Hero Background"
-                        className="w-full object-cover"
-                    />
-                </div>
-                <div className="relative z-10 py-10 max-w-[1440px] m-auto">
+                <div className="py-10 w-[1440px] m-auto">
                     {children}
                 </div>
             </main>

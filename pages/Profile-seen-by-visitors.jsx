@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
-import Layout from '@/components/Layout/Layout'
+import Mainlayout from '@/components/MainLayout/Mainlayout'
 import dynamic from "next/dynamic"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
@@ -164,34 +164,64 @@ export default function Profileseenbyvisitors() {
         ]
 
     return (
-        <Layout>
-            {/* <div className='flex justify-between text-[#000000] px-4 py-4'>
-                <span>Current location, Lyon, France</span>
-                <span>Available</span>
-            </div> */}
-            <div className="max-w-[1440px] mx-auto grid grid-cols-3 gap-2 px-4 pt-10">
-                <div className="col-span-2 flex flex-col gap-2">
-                    <div className="bg-white rounded-[25px] shadow-md p-6 flex flex-col items-center max-w-[982px] w-full">
-                        <div className="relative -mt-20">
-                            <img
-                                src="/jobcard/user3.png"
-                                alt="profile"
-                                className="w-[120px] h-[120px] rounded-full border-4 border-white"
-                            />
-                            <span className="absolute top-0 right-0 p-1 rounded-full">
-                                <img src='/badge1.png' />
-                            </span>
+        <Mainlayout>
+            <div className="flex gap-2 px-4 pt-10">
+                <div className="w-[982px] col-span-2 flex flex-col gap-2">
+
+                    <div className="bg-white h-[202px] w-[982px] rounded-[25px] shadow-md p-6 flex flex-col relative">
+                        <div className="flex justify-between">
+                            <div className="flex gap-2 items-center">
+                                <img src="/userloc.png" className="w-[56px] h-[44px]" />
+                                <p>
+                                    <span className="font-semibold text-[#000000] text-[14px]">
+                                        Ideal workplace
+                                    </span>{" "}
+                                    <span className="font-normal text-[#757575] text-[14px]">
+                                        Paris, France
+                                    </span>
+                                </p>
+                            </div>
+
+                            <div className="flex flex-col items-center">
+                                <div>
+                                    {[...Array(4)].map((_, i) => (
+                                        <span
+                                            key={i}
+                                            className="text-[#EDEDED] text-[20px] leading-none"
+                                        >
+                                            ★
+                                        </span>
+                                    ))}
+                                </div>
+                                <span className="text-[#757575] text-[14px]">( no reviews yet)</span>
+                            </div>
                         </div>
 
-                        <div className="mt-4 text-center">
+                        {/* Profile Image - floating at top center */}
+                        <div className="absolute -top-[60px] left-1/2 transform -translate-x-1/2">
+                            <div className="relative w-[120px] h-[120px]">
+                                <img
+                                    src="/jobcard/user3.png"
+                                    alt="profile"
+                                    className="w-[120px] h-[120px] rounded-full border-4 border-white object-cover"
+                                />
+
+                                {/* Badge */}
+                                <span className="absolute top-0 right-0 w-[32px] h-[32px]">
+                                    <img src="/badge1.png" className="w-full h-full" alt="badge" />
+                                </span>
+                            </div>
+                        </div>
+
+                        {/* Name + Roles */}
+                        <div className="text-center">
                             <h2 className="text-lg font-semibold text-[#000000]">John Doe</h2>
                             <p className="text-[#757575]">Cook | Waiter | Barman</p>
                         </div>
                     </div>
 
 
-
-                    <div className="bg-white rounded-[25px] shadow-md w-full max-h-[88px] max-w-[982px] mx-auto">
+                    <div className="bg-white h-[88px] w-[982px] rounded-[25px] shadow-md mx-auto">
                         <div className="grid grid-cols-[20%_40%_40%] divide-x divide-gray-200 text-center">
                             {/* Contract */}
                             <div className="text-center p-4">
@@ -225,10 +255,9 @@ export default function Profileseenbyvisitors() {
                         </div>
                     </div>
 
-
                     {/* About Me */}
 
-                    <div className="bg-white rounded-[25px] shadow-md p-6 flex flex-col items-center max-w-[982px] w-full">
+                    <div className="bg-white h-[504px] w-[982px] rounded-[25px] shadow-md p-6 flex flex-col items-center">
                         <h3 className="font-semibold text-[#000000] mb-2">About Me</h3>
                         <div className="w-full h-[300px]">
                             <CustomMap />
@@ -251,7 +280,7 @@ export default function Profileseenbyvisitors() {
 
                     {/* Experience */}
 
-                    <div className="bg-white rounded-[25px] shadow-md p-6 flex flex-col  max-w-[982px] w-full">
+                    <div className="bg-white h-[242px] w-[982px] rounded-[25px] shadow-md p-6 flex flex-col">
                         <h1 className='text-[16px] text-[#000000] font-semibold text-left'> Experience</h1>
                         <div className='mt-5  flex justify-between items-center'>
                             <div className='flex gap-10 items-center'>
@@ -316,7 +345,7 @@ export default function Profileseenbyvisitors() {
 
                     {/* Education */}
 
-                    <div className="bg-white rounded-[25px] shadow-md p-6 flex flex-col  max-w-[982px] w-full">
+                    <div className="bg-white h-[242px] w-[982px] rounded-[25px] shadow-md p-6 flex flex-col">
                         <h1 className='text-[16px] text-[#000000] font-semibold text-left'> Education</h1>
                         <div className='mt-5  flex justify-between items-center'>
                             <div className='flex gap-10 items-center'>
@@ -381,7 +410,7 @@ export default function Profileseenbyvisitors() {
 
                     {/* Values & Interests */}
 
-                    <div className="bg-white rounded-[25px] shadow-md p-6 flex flex-col items-center max-w-[982px] w-full">
+                    <div className="bg-white h-[219px] w-[982px] rounded-[25px] shadow-md p-6 flex flex-col items-center">
                         <h3 className="font-semibold text-[#000000] mb-4">Values & Interests</h3>
 
                         <div className="flex flex-col gap-4 w-full">
@@ -414,7 +443,7 @@ export default function Profileseenbyvisitors() {
 
                     {/* Recent Feedbacks */}
 
-                    <div className="bg-white rounded-[25px] shadow-md p-6 flex flex-col items-center max-w-[982px] w-full relative">
+                    <div className="bg-white h-[218px] w-[982px] rounded-[25px] shadow-md p-6 flex flex-col items-center relative">
                         <h1 className="text-[16px] text-[#000000] font-semibold mb-4">
                             Recent Feedbacks
                         </h1>
@@ -459,6 +488,12 @@ export default function Profileseenbyvisitors() {
                                     </div>
                                     <div>
                                         <h2 className="text-[#333333] text-[16px] font-semibold">{fb.name}</h2>
+                                        <div className="flex justify-center">
+                                            {[...Array(4)].map((_, i) => (
+                                                <span key={i} className="text-[#FFAD2A] text-[24px]">★</span>
+                                            ))}
+                                            <span className="text-[#EDEDED] text-[24px]" >★</span>
+                                        </div>
                                         <span className="text-[#757575] text-[14px]">{fb.text}</span>
                                     </div>
                                 </div>
@@ -469,12 +504,16 @@ export default function Profileseenbyvisitors() {
 
                     {/* John’s Gallery */}
 
-                    <div className="bg-white rounded-[25px] shadow-md p-6 flex flex-col items-center max-w-[982px] w-full">
+                    <div className="bg-white w-[982px] h-[780px] rounded-[25px] shadow-md p-6 flex flex-col items-center">
                         <h1 className="text-[16px] text-[#000000] font-semibold mb-4">John’s Gallery</h1>
 
                         {/* Main Image */}
-                        <div className="mb-2 w-full flex justify-center">
-                            <img src='/gallery-main.png' className="rounded-[20px]" />
+                        <div className="mb-2 flex justify-center">
+                            <img
+                                src="/gallery-main.png"
+                                className="rounded-[20px] w-[864px] h-[314px] object-cover"
+                                alt="Main gallery"
+                            />
                         </div>
 
                         {/* Thumbnails Scroll */}
@@ -492,25 +531,25 @@ export default function Profileseenbyvisitors() {
                             {/* Thumbnails Row */}
                             <div
                                 ref={galleryRef}
-                                className="flex gap-[5px] overflow-x-auto scroll-smooth w-full  scrollbar-hide"
+                                className="flex gap-[5px] overflow-x-auto scroll-smooth w-full scrollbar-hide"
                             >
-                                {Array(4).fill("").map((_, i) => (
-                                    <div className='flex flex-col gap-2'>
+                                {Array(6).fill("").map((_, i) => (
+                                    <div key={i} className="flex flex-col gap-2 w-[257px] h-[339px] flex-shrink-0">
                                         <img
-                                            key={i}
                                             src="/gallerytest.jpg"
-                                            className="min-w-[257px] h-[310px] flex-shrink-0 rounded-[20px]"
+                                            className="w-[257px] h-[310px] rounded-[20px] object-cover"
+                                            alt="Thumbnail"
                                         />
-                                        <div className='flex justify-between px-2'>
-                                            <p className='flex gap-1'>
-                                                <span className='text-[#333333] font-semibold text-[14px]'>
+                                        <div className="flex justify-between px-2">
+                                            <p className="flex gap-1">
+                                                <span className="text-[#333333] font-semibold text-[14px]">
                                                     Posted by :
                                                 </span>
-                                                <span className='text-[#757575] font-normal text-[14px]'>
+                                                <span className="text-[#757575] font-normal text-[14px]">
                                                     John Doe
                                                 </span>
                                             </p>
-                                            <span className='text-[#757575] font-normal text-[14px]'>
+                                            <span className="text-[#757575] font-normal text-[14px]">
                                                 02/09/25
                                             </span>
                                         </div>
@@ -530,9 +569,10 @@ export default function Profileseenbyvisitors() {
                         </div>
                     </div>
 
+
                     {/* Similar Profiles */}
 
-                    <div className="bg-white rounded-[25px] shadow-md p-6 flex flex-col items-center max-w-[982px] w-full relative">
+                    <div className="bg-white h-[300px] w-[982px] rounded-[25px] shadow-md p-6 flex flex-col items-center relative">
                         <h1 className="text-[16px] text-[#000000] font-semibold mb-4">
                             Similar Profiles
                         </h1>
@@ -541,7 +581,7 @@ export default function Profileseenbyvisitors() {
                         {canScrollLeftProfiles && (
                             <button
                                 onClick={() => scrollProfiles("left")}
-                                className="absolute left-2 top-1/2 -translate-y-1/2 z-10 p-2"
+                                className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow-md"
                             >
                                 <ChevronLeft className="w-5 h-5 text-gray-700" />
                             </button>
@@ -551,7 +591,7 @@ export default function Profileseenbyvisitors() {
                         {canScrollRightProfiles && (
                             <button
                                 onClick={() => scrollProfiles("right")}
-                                className="absolute right-2 top-1/2 -translate-y-1/2 z-10 p-"
+                                className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow-md"
                             >
                                 <ChevronRight className="w-5 h-5 text-gray-700" />
                             </button>
@@ -565,54 +605,63 @@ export default function Profileseenbyvisitors() {
                             {similarprofiles.map((profile, index) => (
                                 <div
                                     key={index}
-                                    className="flex flex-col min-w-[265px] min-h-[210px] justify-start items-center p-0 border border-[#CECECE] rounded-[20px] bg-white shadow-sm flex-shrink-0 text-center"
+                                    className="flex flex-col items-center justify-start w-[265px] h-[201px] border border-[#CECECE] rounded-[20px] bg-white shadow-sm text-center relative flex-shrink-0"
                                 >
-                                    {/* Top gradient section */}
-                                    {/* Top gradient section */}
+                                    {/* Top gradient bar */}
                                     <div
-                                        className="w-full h-[69px] rounded-t-[20px] flex justify-center items-center relative"
+                                        className="w-full h-[69px] rounded-t-[20px]"
                                         style={{
-                                            background: "linear-gradient(107.8deg, rgba(242, 254, 254, 0.2) 0%, rgba(50, 211, 213, 0.2) 50%, rgba(41, 255, 198, 0.2) 100%)"
+                                            background:
+                                                "linear-gradient(180deg, rgba(242, 254, 254, 0.2) 0%, rgba(50, 211, 213, 0.2) 50%, rgba(41, 255, 198, 0.2) 100%)",
                                         }}
-                                    >
-                                        <div className='relative'>
+                                    ></div>
+
+                                    {/* Profile image (overlapping gradient & white section) */}
+                                    <div className="absolute top-[34px]">
+                                        <div className="relative">
                                             <img
                                                 src={profile.img}
-                                                className="rounded-full w-[50px] h-[50px] object-cover"
+                                                className="rounded-full w-[65px] h-[65px] object-cover border-2 border-white shadow-md"
                                                 alt={profile.name}
                                             />
-                                            <div className="absolute top-0 right-0">
-                                                <img src="/badge1.png" alt="badge1" className="w-5 h-5 rounded-full border-2 border-white" />
+                                            {/* Badge */}
+                                            <div className="absolute -bottom-1 -right-1">
+                                                <img
+                                                    src="/badge1.png"
+                                                    alt="badge1"
+                                                    className="w-6 h-6 rounded-full border-2 border-white"
+                                                />
                                             </div>
                                         </div>
                                     </div>
 
                                     {/* Bottom white section */}
-                                    <div className="flex flex-col justify-center items-center gap-1 py-3">
-                                        <h2 className="text-[#333333] text-[14px] font-semibold">{profile.name}</h2>
+                                    <div className="flex flex-col justify-center items-center gap-1 pt-10">
+                                        <h2 className="text-[#333333] text-[14px] font-semibold">
+                                            {profile.name}
+                                        </h2>
                                         <span className="text-[#757575] text-[12px]">{profile.text}</span>
 
                                         {/* Stars */}
                                         <div className="flex justify-center">
                                             {[...Array(4)].map((_, i) => (
-                                                <span key={i} className="text-[#FFAD2A] text-[24px]">★</span>
+                                                <span key={i} className="text-[#FFAD2A] text-[20px] leading-none">
+                                                    ★
+                                                </span>
                                             ))}
-                                            <span className="text-[#EDEDED] text-[24px]" >★</span>
+                                            <span className="text-[#EDEDED] text-[20px] leading-none">★</span>
                                         </div>
                                     </div>
                                 </div>
                             ))}
                         </div>
-
                     </div>
 
-
-
                 </div>
 
-                <div className="bg-white rounded-[25px] shadow-md p-6 h-[520px]">
+                <div className="bg-white h-[691px] w-[345px] rounded-[25px] shadow-md p-6">
                 </div>
             </div>
-        </Layout >
+        </Mainlayout >
     )
 }
