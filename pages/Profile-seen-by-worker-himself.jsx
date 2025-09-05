@@ -37,8 +37,8 @@ const ValuesAndInterests = [
         ]
     },
 ]
-export default function Profileseenbyvisitors() {
 
+export default function Profile_seen_by_worker_himself() {
     const scrollRef = useRef(null);
     const [canScrollLeft, setCanScrollLeft] = useState(false)
     const [canScrollRight, setCanScrollRight] = useState(false)
@@ -164,6 +164,14 @@ export default function Profileseenbyvisitors() {
             },
         ]
 
+    const [selectedImage, setSelectedImage] = useState(null);
+
+    const handleImageUpload = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            setSelectedImage(URL.createObjectURL(file));
+        }
+    };
     return (
         <Mainlayout>
             <div className='flex justify-between items-center'>
@@ -173,7 +181,11 @@ export default function Profileseenbyvisitors() {
                         <span className='text-[#000000] font-normal text-[14px]'>Lyon, France</span>
                     </p>
                 </div>
-                <div>
+                <div className='flex gap-2'>
+                    <button className='flex border border-[#000000] rounded-[12px] px-2 py-2 justify-center items-center gap-2'>
+                        <img src='/visitoreye.png' />
+                        <span className='text-[#000000] text-[14px] font-medium'>View as Visitor</span>
+                    </button>
                     <ToggleSwitch />
                 </div>
             </div>
@@ -194,18 +206,25 @@ export default function Profileseenbyvisitors() {
                                 </p>
                             </div>
 
-                            <div className="flex flex-col items-center">
-                                <div>
-                                    {[...Array(4)].map((_, i) => (
-                                        <span
-                                            key={i}
-                                            className="text-[#EDEDED] text-[20px] leading-none"
-                                        >
-                                            ★
-                                        </span>
-                                    ))}
+                            <div className="flex  items-center">
+                                <div className='flex gap-2 items-center justify-center'>
+                                    <div className='flex items-center flex-col'>
+                                        <div>
+                                            {[...Array(4)].map((_, i) => (
+                                                <span
+                                                    key={i}
+                                                    className="text-[#EDEDED] text-[20px] leading-none"
+                                                >
+                                                    ★
+                                                </span>
+                                            ))}
+                                        </div>
+                                        <span className="text-[#757575] text-[14px]">( no reviews yet)</span>
+                                    </div>
+                                    <div>
+                                        <img src='Editblue.png' className='w-[24px] h-[24px] cursor-pointer' />
+                                    </div>
                                 </div>
-                                <span className="text-[#757575] text-[14px]">( no reviews yet)</span>
                             </div>
                         </div>
 
@@ -219,8 +238,8 @@ export default function Profileseenbyvisitors() {
                                 />
 
                                 {/* Badge */}
-                                <span className="absolute top-0 right-0 w-[32px] h-[32px]">
-                                    <img src="/badge1.png" className="w-full h-full" alt="badge" />
+                                <span className="absolute top-20 right-0 w-[38px] h-[39px]">
+                                    <img src="/camera.png" className="w-full h-full" alt="badge" />
                                 </span>
                             </div>
                         </div>
@@ -253,18 +272,51 @@ export default function Profileseenbyvisitors() {
                         </div>
                     </div>
 
+                    <div className="bg-[#EAF7FC] border border-[#29ABE2] h-[102px] w-[982px] rounded-[10px] shadow-md mx-auto">
+                        <div className='text-center flex flex-col pt-[13px] pb-[13px] pl-[100px] pr-[100px] '>
+                            <span className='text-[#29ABE2] text-[16px] font-semibold'>
+                                You can hide your review anytime !
+                            </span>
+                            <span className='text-[#29ABE2] text-[14px] font-medium'>
+                                It will also hide every feedback you received but you won’t see other users’ reviews (companies included)
+                                and will have to wait 30 days after reactivation to visualize them again.
+                            </span>
+                        </div>
+                    </div>
 
                     <div className="bg-white h-[88px] w-[982px] rounded-[25px] shadow-md mx-auto">
                         <div className="grid grid-cols-[20%_40%_40%] divide-x divide-gray-200 text-center">
                             {/* Contract */}
                             <div className="text-center p-4">
-                                <h3 className="font-semibold text-[#000000] text-[16px] mb-2">Contract</h3>
+                                <div className="relative flex items-center mb-2">
+                                    {/* Centered Title */}
+                                    <h3 className="absolute left-1/2 transform -translate-x-1/2 font-semibold text-[#000000] text-[16px]">
+                                        Contract
+                                    </h3>
+
+                                    {/* Right Icon */}
+                                    <div className="ml-auto">
+                                        <img src="/Editgrey.png" alt="edit" className="cursor-pointer" />
+                                    </div>
+                                </div>
+
                                 <p className="text-[#29ABE2] text-[14px] cursor-pointer">Short-term</p>
                             </div>
 
                             {/* Skills */}
                             <div className="text-center p-4">
-                                <h3 className="font-semibold text-[#000000] text-[16px] mb-2">Skills</h3>
+                                <div className="relative flex items-center mb-2">
+                                    {/* Centered Title */}
+                                    <h3 className="absolute left-1/2 transform -translate-x-1/2 font-semibold text-[#000000] text-[16px]">
+                                        Skills
+                                    </h3>
+
+                                    {/* Right Icon */}
+                                    <div className="ml-auto">
+                                        <img src="/Editgrey.png" alt="edit" className="cursor-pointer" />
+                                    </div>
+                                </div>
+
                                 <div className="flex justify-center text-[14px] items-center gap-3 text-[#757575]">
                                     <span>Customer Service</span>
                                     <span>Customer Relationship</span>
@@ -276,7 +328,17 @@ export default function Profileseenbyvisitors() {
 
                             {/* Languages */}
                             <div className="text-center p-4">
-                                <h3 className="font-semibold text-[#000000] text-[16px] mb-2">Languages</h3>
+                                <div className="relative flex items-center mb-2">
+                                    {/* Centered Title */}
+                                    <h3 className="absolute left-1/2 transform -translate-x-1/2 font-semibold text-[#000000] text-[16px]">
+                                        Languages
+                                    </h3>
+
+                                    {/* Right Icon */}
+                                    <div className="ml-auto">
+                                        <img src="/Editgrey.png" alt="edit" className="cursor-pointer" />
+                                    </div>
+                                </div>
                                 <div className="flex items-center justify-center gap-3 flex-wrap">
                                     <span className="text-[#29ABE2] text-[14px] cursor-pointer hover:underline">Fluent</span>
                                     <img src="/Fluent.png" alt="French" />
@@ -290,31 +352,48 @@ export default function Profileseenbyvisitors() {
 
                     {/* About Me */}
 
-                    <div className="bg-white h-[504px] w-[982px] rounded-[25px] shadow-md p-6 flex flex-col items-center">
-                        <h3 className="font-semibold text-[#000000] mb-2">About Me</h3>
-                        <div className="w-[918px] h-[307px]">
+                    <div className="bg-white h-[504px] w-[982px] rounded-[25px] shadow-md p-6 flex flex-col">
+                        {/* Title + Edit Icon */}
+                        <div className="relative flex items-center mb-4">
+                            <h3 className="absolute left-1/2 transform -translate-x-1/2 font-semibold text-[#000000] text-[16px]">
+                                About Me
+                            </h3>
+                            <div className="ml-auto">
+                                <img src="/Editgrey.png" alt="edit" className="cursor-pointer" />
+                            </div>
+                        </div>
+
+                        {/* Map */}
+                        <div className="w-[918px] h-[307px] self-center">
                             <CustomMap />
                         </div>
-                        <div className='mt-5 flex flex-col justify-center items-center '>
-                            <span className='text-[#757575] text-[14px]'>
+
+                        {/* Description */}
+                        <div className="mt-5 flex flex-col justify-center items-center text-center">
+                            <span className="text-[#757575] text-[14px]">
                                 I am a driven worker, I am looking for a short-term contract in the foods & beverages industry.
                             </span>
-                            <span className='text-[#757575] font-semibold text-[14px]'>
+                            <span className="text-[#757575] font-semibold text-[14px] flex justify-center items-center gap-1">
+                                <img src='/maleicon.png' />
                                 I consider myself as an introvert at work
                             </span>
-                            <p className='text-[#757575] text-[14px]'>
-                                I am authorized to work in {" "}
-                                <span className='text-[#29ABE2] font-semibold text-[14px]'>
+                            <p className="text-[#757575] text-[14px]">
+                                I am authorized to work in{" "}
+                                <span className="text-[#29ABE2] font-semibold text-[14px]">
                                     the European Union
                                 </span>
                             </p>
                         </div>
                     </div>
 
+
                     {/* Experience */}
 
                     <div className="bg-white h-[242px] w-[982px] rounded-[25px] shadow-md p-6 flex flex-col">
-                        <h1 className='text-[16px] text-[#000000] font-semibold text-left'> Experience</h1>
+                        <div className='flex justify-between'>
+                            <h1 className='text-[16px] text-[#000000] font-semibold text-left'> Experience</h1>
+                            <img src="/Editgrey.png" alt="edit" className="cursor-pointer" />
+                        </div>
                         <div className='mt-5  flex justify-between items-center'>
                             <div className='flex gap-10 items-center'>
                                 <img src='/mcd.png' />
@@ -379,7 +458,10 @@ export default function Profileseenbyvisitors() {
                     {/* Education */}
 
                     <div className="bg-white h-[242px] w-[982px] rounded-[25px] shadow-md p-6 flex flex-col">
-                        <h1 className='text-[16px] text-[#000000] font-semibold text-left'> Education</h1>
+                        <div className='flex justify-between'>
+                            <h1 className='text-[16px] text-[#000000] font-semibold text-left'> Education</h1>
+                            <img src="/Editgrey.png" alt="edit" className="cursor-pointer" />
+                        </div>
                         <div className='mt-5  flex justify-between items-center'>
                             <div className='grid grid-cols-[100px_180px_180px_120px_140px] items-center'>
                                 <img src='/edu.png' />
@@ -443,8 +525,15 @@ export default function Profileseenbyvisitors() {
 
                     {/* Values & Interests */}
 
-                    <div className="bg-white h-[219px] w-[982px] rounded-[25px] shadow-md p-6 flex flex-col items-center">
-                        <h3 className="font-semibold text-[#000000] mb-4">Values & Interests</h3>
+                    <div className="bg-white h-[219px] w-[982px] rounded-[25px] shadow-md p-6 flex flex-col">
+                        <div className="relative flex items-center mb-4">
+                            <h3 className="absolute left-1/2 transform -translate-x-1/2 font-semibold text-[#000000] text-[16px]">
+                                Values & Interests
+                            </h3>
+                            <div className="ml-auto">
+                                <img src="/Editgrey.png" alt="edit" className="cursor-pointer" />
+                            </div>
+                        </div>
 
                         <div className="flex flex-col gap-4 w-full">
                             {ValuesAndInterests.map((row, rowIndex) => {
@@ -476,10 +565,15 @@ export default function Profileseenbyvisitors() {
 
                     {/* Recent Feedbacks */}
 
-                    <div className="bg-white h-[218px] w-[982px] rounded-[25px] shadow-md p-6 flex flex-col items-center relative">
-                        <h1 className="text-[16px] text-[#000000] font-semibold mb-4">
-                            Recent Feedbacks
-                        </h1>
+                    <div className="bg-white h-[218px] w-[982px] rounded-[25px] shadow-md p-6 flex flex-col relative">
+                        <div className="relative flex items-center mb-4">
+                            <h3 className="absolute left-1/2 transform -translate-x-1/2 font-semibold text-[#000000] text-[16px]">
+                                Recent Feedbacks
+                            </h3>
+                            <div className="ml-auto">
+                                <img src="/Editgrey.png" alt="edit" className="cursor-pointer" />
+                            </div>
+                        </div>
                         {/* Left Scroll Overlay */}
                         {canScrollLeft && (
                             <div className="absolute left-1 top-0 h-full w-16 bg-gradient-to-r from-white to-transparent z-10 flex items-center rounded-[25px] justify-start">
@@ -514,24 +608,40 @@ export default function Profileseenbyvisitors() {
                                     key={index}
                                     className="min-w-[536px] min-h-[122px] flex gap-2 justify-center p-5 items-center border border-[#CECECE] rounded-[20px] bg-white shadow-sm flex-shrink-0"
                                 >
-                                    <div>
-                                        <img
-                                            src={fb.img}
-                                            className="rounded-full w-[54px] h-[54px] object-cover"
-                                            alt={fb.name}
-                                        />
-                                    </div>
-                                    <div>
-                                        <div className='flex  justify-between items-center'>
-                                            <h2 className="text-[#333333] text-[16px] font-semibold">{fb.name}</h2>
-                                            <div className="flex justify-center">
-                                                {[...Array(4)].map((_, i) => (
-                                                    <span key={i} className="text-[#FFAD2A] text-[24px]">★</span>
-                                                ))}
-                                                <span className="text-[#EDEDED] text-[24px]" >★</span>
+                                    <div className='flex flex-col gap-2'>
+                                        <div className='flex gap-2'>
+                                            <div>
+                                                <img
+                                                    src={fb.img}
+                                                    className="rounded-full w-[54px] h-[54px] object-cover"
+                                                    alt={fb.name}
+                                                />
+                                            </div>
+                                            <div>
+                                                <div className='flex  justify-between items-center'>
+                                                    <h2 className="text-[#333333] text-[16px] font-semibold">{fb.name}</h2>
+                                                    <div className="flex justify-center">
+                                                        {[...Array(4)].map((_, i) => (
+                                                            <span key={i} className="text-[#FFAD2A] text-[24px]">★</span>
+                                                        ))}
+                                                        <span className="text-[#EDEDED] text-[24px]" >★</span>
+                                                    </div>
+                                                </div>
+                                                <span className="text-[#757575] text-[14px]">{fb.text}</span>
+
                                             </div>
                                         </div>
-                                        <span className="text-[#757575] text-[14px]">{fb.text}</span>
+                                        <hr className='text-[#DEDDDD]' />
+                                        <div className='flex justify-center items-center gap-[106px]'>
+                                            <span className='text-[#9A9A9A] font-semibold flex gap-2 items-center'>
+                                                <img src='/reply.png' />
+                                                REPLY
+                                            </span>
+                                            <span className='text-[#9A9A9A] font-semibold flex gap-2 items-center'>
+                                                <img src='/report.png' />
+                                                REPORT
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             ))}
@@ -541,24 +651,67 @@ export default function Profileseenbyvisitors() {
 
                     {/* John’s Gallery */}
 
-                    <div className="bg-white w-[982px] h-[780px] rounded-[25px] shadow-md p-6 flex flex-col items-center">
-                        <h1 className="text-[16px] text-[#000000] font-semibold mb-4">John’s Gallery</h1>
+                    <div className="bg-white w-[982px] h-[863px] rounded-[25px] shadow-md p-6 flex flex-col">
+                        <div className="relative flex items-center mb-4">
+                            <h3 className="absolute left-1/2 transform -translate-x-1/2 font-semibold text-[#000000] text-[16px]">
+                                John’s Gallery
+                            </h3>
+                            <div className="ml-auto">
+                                <img src="/Editgrey.png" alt="edit" className="cursor-pointer" />
+                            </div>
+                        </div>
 
                         {/* Main Image */}
+
                         <div className="mb-2 flex justify-center">
-                            <img
-                                src="/gallery-main.png"
-                                className="rounded-[20px] w-[864px] h-[314px] object-cover"
-                                alt="Main gallery"
-                            />
+                            <div className="w-[864px] h-[314px] flex flex-col items-center justify-center bg-[#E6E6E6] border-2 border-dashed border-gray-400 rounded-[20px] ">
+                                {selectedImage ? (
+                                    <img
+                                        src={selectedImage}
+                                        alt="Uploaded Preview"
+                                        className="rounded-[20px] w-full h-full object-cover"
+                                    />
+                                ) : (
+                                    <>
+                                        <input
+                                            type="file"
+                                            id="file-upload"
+                                            accept="image/*"
+                                            onChange={handleImageUpload}
+                                            className="hidden"
+                                        />
+                                        <label
+                                            htmlFor="file-upload"
+                                            className="px-6 py-2 bg-[#29ABE2] text-[#FFFFFF] rounded-[10px] cursor-pointer transition"
+                                        >
+                                            Upload
+                                        </label>
+                                        <div className="flex items-center mt-4">
+                                            <input
+                                                type="checkbox"
+                                                id="repost"
+                                                className="mr-2 text-[#000000] bg-[#E6E6E6]"
+                                            />
+                                            <label
+                                                htmlFor="repost"
+                                                className="text-[14px] text-[#000000] font-medium cursor-pointer"
+                                            >
+                                                Make my content eligible to be reposted on Everywhere Jobs’ Socials
+                                                & Communications
+                                            </label>
+                                        </div>
+                                    </>
+                                )}
+                            </div>
                         </div>
+
 
                         {/* Thumbnails Scroll */}
                         <div className="relative w-full flex items-center">
                             {canScrollLeftGallery && (
                                 <div className="absolute left-0 top-0 h-full w-16 
-                    bg-gradient-to-r from-white to-transparent 
-                    z-20 flex items-center justify-start">
+                                        bg-gradient-to-r from-white to-transparent 
+                                        z-20 flex items-center justify-start">
                                     <button
                                         onClick={() => scrollGallery("left")}
                                         className="p-2 rounded-full bg-white shadow-md"
@@ -572,7 +725,7 @@ export default function Profileseenbyvisitors() {
                             <div
                                 ref={galleryRef}
                                 className="flex gap-[5px] overflow-x-auto scroll-smooth 
-               w-full scrollbar-hide z-0 px-6"
+                                    w-full scrollbar-hide z-0 px-6"
                             >
                                 {Array(6).fill("").map((_, i) => (
                                     <div key={i} className="flex flex-col gap-2 w-[257px] h-[339px] flex-shrink-0">
@@ -598,10 +751,11 @@ export default function Profileseenbyvisitors() {
                                 ))}
                             </div>
 
+
                             {canScrollRightGallery && (
                                 <div className="absolute right-0 top-0 h-full w-16 
-                    bg-gradient-to-l from-white to-transparent 
-                    z-20 flex items-center justify-end">
+                                    bg-gradient-to-l from-white to-transparent 
+                                    z-20 flex items-center justify-end">
                                     <button
                                         onClick={() => scrollGallery("right")}
                                         className="p-2 rounded-full bg-white shadow-md"
@@ -610,6 +764,13 @@ export default function Profileseenbyvisitors() {
                                     </button>
                                 </div>
                             )}
+                        </div>
+
+                        <div className="bg-[#EAF7FC] h-[66px] w-[864px] rounded-[999px] mt-5 pt-[10px] pb-[10px] pl-[80px] pr-[80px] flex justify-center items-center">
+
+                            <span className='text-[#29ABE2] text-[14px] italic text-center font-normal'>You can request content removal for reposted content here <br />
+                                (only if you or your company are recognizable)
+                            </span>
                         </div>
 
                     </div>
@@ -701,6 +862,13 @@ export default function Profileseenbyvisitors() {
                             ))}
                         </div>
                     </div>
+
+                    <div className="bg-[#4BDDB61A] h-[41px] w-[982px] rounded-[999px] pt-[10px] pb-[10px] pl-[80px] pr-[80px] flex justify-center items-center">
+                        <span className="text-[#4BDDB6] text-[14px] font-medium text-center">
+                            You are responsible for the information you communicate & provide on your pages : complete and verify them well !
+                        </span>
+                    </div>
+
 
                 </div>
 
