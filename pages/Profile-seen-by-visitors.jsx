@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react'
 import Mainlayout from '@/components/MainLayout/Mainlayout'
 import dynamic from "next/dynamic"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import ToggleSwitch from '@/components/UI/ToggleSwitch';
 
 const CustomMap = dynamic(() => import("@/components/CustomMap/CustomMap"), {
     ssr: false,
@@ -165,6 +166,17 @@ export default function Profileseenbyvisitors() {
 
     return (
         <Mainlayout>
+            <div className='flex justify-between items-center'>
+                <div>
+                    <p className='flex gap-1'>
+                        <span className='text-[#000000] font-medium text-[14px]'>Current location </span>
+                        <span className='text-[#000000] font-normal text-[14px]'>Lyon, France</span>
+                    </p>
+                </div>
+                <div>
+                    <ToggleSwitch />
+                </div>
+            </div>
             <div className="flex gap-2 px-4 pt-10">
                 <div className="w-[982px] col-span-2 flex flex-col gap-2">
 
@@ -218,6 +230,27 @@ export default function Profileseenbyvisitors() {
                             <h2 className="text-lg font-semibold text-[#000000]">John Doe</h2>
                             <p className="text-[#757575]">Cook | Waiter | Barman</p>
                         </div>
+
+                        <div className='flex justify-center items-center gap-4 mt-2'>
+                            <p className='flex flex-col items-center'>
+                                <span className='text-[#29ABE2] text-[16px] font-semibold'>1,252</span>
+                                <span className='text-[#757575] text-[14px] font-normal'>followers</span>
+                            </p>
+                            <p className='flex flex-col items-center'>
+                                <span className='text-[#29ABE2] text-[16px] font-semibold'>1,252</span>
+                                <span className='text-[#757575] text-[14px] font-normal'>following</span>
+                            </p>
+
+                            <button className='flex gap-1  px-2 py-2 justify-center items-center border border-[#29ABE2] rounded-[10px]'>
+                                <img src='/follow.png' className='w-[15px] h-[13px]' />
+                                <span className='font-semibold text-[#29ABE2] text-[14px]'>Follow</span>
+                            </button>
+
+                            <button className='flex gap-1  px-2 py-2 justify-center items-center bg-[#000000] rounded-[10px]'>
+                                <img src="/jobcard/apply.png" />
+                                <span className='font-semibold text-[#FFFFFF] text-[14px]'>Send a message</span>
+                            </button>
+                        </div>
                     </div>
 
 
@@ -259,7 +292,7 @@ export default function Profileseenbyvisitors() {
 
                     <div className="bg-white h-[504px] w-[982px] rounded-[25px] shadow-md p-6 flex flex-col items-center">
                         <h3 className="font-semibold text-[#000000] mb-2">About Me</h3>
-                        <div className="w-full h-[300px]">
+                        <div className="w-[918px] h-[307px]">
                             <CustomMap />
                         </div>
                         <div className='mt-5 flex flex-col justify-center items-center '>
@@ -348,7 +381,7 @@ export default function Profileseenbyvisitors() {
                     <div className="bg-white h-[242px] w-[982px] rounded-[25px] shadow-md p-6 flex flex-col">
                         <h1 className='text-[16px] text-[#000000] font-semibold text-left'> Education</h1>
                         <div className='mt-5  flex justify-between items-center'>
-                            <div className='flex gap-10 items-center'>
+                            <div className='grid grid-cols-[100px_180px_180px_120px_140px] items-center'>
                                 <img src='/edu.png' />
                                 <span className='text-[#000000] text-[14px] font-semibold'>
                                     Masters Degree
@@ -379,7 +412,7 @@ export default function Profileseenbyvisitors() {
                         <hr className='mt-5 text-[#CECECE]' />
 
                         <div className='mt-5  flex justify-between items-center'>
-                            <div className='flex gap-10 items-center'>
+                            <div className='grid grid-cols-[100px_180px_180px_120px_140px] items-center'>
                                 <img src='/edu.png' />
                                 <span className='text-[#000000] text-[14px] font-semibold'>
                                     Level of X certification
@@ -518,14 +551,15 @@ export default function Profileseenbyvisitors() {
 
                         {/* Thumbnails Scroll */}
                         <div className="relative w-full flex items-center">
-                            {/* Left Scroll */}
                             {canScrollLeftGallery && (
-                                <button
-                                    onClick={() => scrollGallery("left")}
-                                    className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-gray-100 rounded-full shadow"
-                                >
-                                    <ChevronLeft className="w-5 h-5 text-gray-700" />
-                                </button>
+                                <div className="absolute left-0 top-0 h-full w-16 bg-gradient-to-r from-white to-transparent z-10 flex items-center justify-start">
+                                    <button
+                                        onClick={() => scrollGallery("left")}
+                                        className="p-2 rounded-full bg-white shadow-md"
+                                    >
+                                        <ChevronLeft className="w-5 h-5 text-gray-700" />
+                                    </button>
+                                </div>
                             )}
 
                             {/* Thumbnails Row */}
@@ -557,14 +591,16 @@ export default function Profileseenbyvisitors() {
                                 ))}
                             </div>
 
-                            {/* Right Scroll */}
+                            {/* Right Scroll Overlay */}
                             {canScrollRightGallery && (
-                                <button
-                                    onClick={() => scrollGallery("right")}
-                                    className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-gray-100 rounded-full shadow"
-                                >
-                                    <ChevronRight className="w-5 h-5 text-gray-700" />
-                                </button>
+                                <div className="absolute right-0 top-0 h-full w-16 bg-gradient-to-l from-white to-transparent z-10 flex items-center justify-end">
+                                    <button
+                                        onClick={() => scrollGallery("right")}
+                                        className="p-2 rounded-full bg-white shadow-md"
+                                    >
+                                        <ChevronRight className="w-5 h-5 text-gray-700" />
+                                    </button>
+                                </div>
                             )}
                         </div>
                     </div>
@@ -659,8 +695,101 @@ export default function Profileseenbyvisitors() {
 
                 </div>
 
-                <div className="bg-white h-[691px] w-[345px] rounded-[25px] shadow-md p-6">
+                <div className="bg-white h-[691px] w-[345px] rounded-[25px] shadow-md p-6 flex flex-col">
+                    {/* Menu Section */}
+                    <div className="space-y-4">
+                        <h3 className="text-[#000000] font-semibold text-[16px]">Menu</h3>
+
+                        <div className="flex items-center gap-3 cursor-pointer">
+                            <img src="/change-mode.png" alt="change mode" />
+                            <span className="text-[#757575] text-[14px] font-medium">Change mode</span>
+                        </div>
+
+                        <div className="flex items-center gap-3 cursor-pointer">
+                            <img src="/dashboard.png" alt="dashboard" />
+                            <span className="text-[#757575] text-[14px]  font-medium">Dashboard</span>
+                        </div>
+
+                        <div className="flex items-center gap-3 cursor-pointer">
+                            <img src="/messages.png" alt="messages" />
+                            <span className="text-[#757575] text-[14px] font-medium">Messages</span>
+                        </div>
+
+                        <div className="flex items-center gap-3 cursor-pointer">
+                            <img src="/faq.png" alt="faq" />
+                            <span className="text-[#757575] text-[14px] font-medium">FAQ</span>
+                        </div>
+                    </div>
+
+                    {/* Divider */}
+                    <div className="border-t border-[#F5F5F5] my-6"></div>
+
+                    {/* Relations */}
+                    <div>
+                        <h3 className="text-[#000000] font-semibold text-[16px] mb-3">Relations</h3>
+                        <div className="flex items-center gap-2">
+                            {/* Count */}
+                            <span className="text-[#29ABE2] text-[16px] font-medium cursor-pointer">
+                                200+
+                            </span>
+                            {/* Avatars */}
+                            <div>
+                                <img
+                                    src={'/relation.png'}
+                                    alt="relation"
+                                    className="object-cover"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Divider */}
+                    <div className="border-t border-[#F5F5F5] my-6"></div>
+
+                    {/* Similar Profiles */}
+                    <div>
+                        <h3 className="text-[#000000] font-semibold text-[16px] mb-4">Similar Profiles</h3>
+
+                        {/* Profile 1 */}
+                        <div className="flex items-center gap-3 mb-4">
+                            <img src="/jobcard/user1.png" alt="Richard" className="w-[44px] h-[44px] rounded-full object-cover" />
+                            <div>
+                                <p className="text-[14px] font-semibold text-[#000000] flex items-center gap-1">
+                                    Richard Branson
+                                    <img src="/badge1.png" className="w-4 h-4" />
+                                </p>
+                                <p className="text-[13px] text-[#757575]">Founder at Virgin group</p>
+                            </div>
+                        </div>
+
+                        {/* Profile 2 */}
+                        <div className="flex items-center gap-3">
+                            <img src="/jobcard/user2.png" alt="Nidhi" className="w-[44px] h-[44px] rounded-full object-cover" />
+                            <div>
+                                <p className="text-[14px] font-semibold text-[#000000] flex items-center gap-1">
+                                    Nidhi Nagori
+                                    <img src="/badge1.png" className="w-4 h-4" />
+                                </p>
+                                <p className="text-[13px] text-[#757575]">CEO & Founder - Globally</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Divider */}
+                    <div className="border-t border-[#F5F5F5] my-6"></div>
+
+                    {/* Ad */}
+                    <div className="w-full">
+                        <h3 className="text-[#CECECE] font-semibold text-[16px] mb-2">Ad</h3>
+
+                        <img
+                            src="/ad.png"
+                            alt="ad"
+                            className="w-[281px] h-[62px] object-cover rounded-[20px]"
+                        />
+                    </div>
                 </div>
+
             </div>
         </Mainlayout >
     )
