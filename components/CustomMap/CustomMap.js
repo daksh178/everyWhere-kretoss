@@ -84,14 +84,30 @@ export default function CustomMap() {
 
         {/* Zoom control at bottom-right */}
         <ZoomControl position="bottomright" />
+        <div
+          id="show-accommodations-btn"
+          class="absolute bottom-9 left-1/2 -translate-x-1/2 bg-white px-[15px] py-[10px] rounded-[10px] shadow-[0_3px_12px_rgba(0,0,0,0.15)] text-[#00a0df] text-[12px] flex items-center gap-[10px] z-[999]"
+        >
+          <input
+            type="checkbox"
+            id="accommodation-toggle"
+            class="peer appearance-none w-4 h-4 border border-[#00a0df] rounded-sm cursor-pointer 
+           checked:bg-[#00a0df] checked:border-[#00a0df]
+           checked:after:content-['✔'] checked:after:text-white checked:after:text-[10px] 
+           checked:after:flex checked:after:items-center checked:after:justify-center"
+          />
+          <label for="accommodation-toggle" class="cursor-pointer select-none">
+            Show nearby accommodations
+          </label>
+        </div>
       </MapContainer>
       {/* ✅ Custom fullscreen button */}
-      <div
+      {/* <div
         onClick={toggleFullscreen}
         className="absolute top-[17px] right-[17px] z-[1000] rounded-[12px] p-[10px] shadow-[0_2px_8px_rgba(0,0,0,0.1)] flex items-center justify-center cursor-pointer transition-all duration-300 ease-in-out"
       >
         <img src="./Stepper.png" alt="Fullscreen" className="w-[42px] h-[42px]" />
-      </div>
+      </div> */}
     </>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import Layout from '@/components/Layout/Layout'
+// import Layout from '@/components/Layout/Layout/'
 import Mainlayout from '@/components/MainLayout/Mainlayout';
 import { MapPin, Clock, Calendar, Star, Globe, Users, Coffee, ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -96,8 +96,8 @@ export default function jobOfferSeenByUser() {
     };
 
     return (
-        <Layout>
-            <div className="min-h-screen bg-gray-50">
+        <Mainlayout>
+            <div className="min-h-screen">
                 {/* Main Content Container */}
                 <div className="max-w-7xl mx-auto px-4 py-6">
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-62">
@@ -763,6 +763,6 @@ export default function jobOfferSeenByUser() {
                     </div>
                 </div>
             </div >
-        </Layout >
+        </Mainlayout >
     )
 }

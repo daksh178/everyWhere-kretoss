@@ -16,6 +16,7 @@ export default function Index() {
   const router = useRouter();
   const currentPath = router.pathname;
   const scrollRef = useRef(null)
+  const mapRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(false)
   const [showMobileFilters, setShowMobileFilters] = useState(false)
@@ -55,6 +56,18 @@ export default function Index() {
     { leftImg: "/rating.png", text: "Rating level" },
     { leftImg: "/workstyle.png", text: "Work style" },
   ]
+
+const toggleFullscreen = () => {
+  const mapEl = document.querySelector(".custom-map-container"); // className of map container
+  if (!mapEl) return;
+
+  if (!document.fullscreenElement) {
+    mapEl.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
+};
+
 
   return (
     <div className="flex flex-col h-screen">
@@ -226,17 +239,17 @@ export default function Index() {
 
         {/* Right Column (fixed map) */}
         <div className="relative hidden lg:block w-2/5">
-          <div className="h-[calc(100vh-210px)]">
-            <CustomMap />
+          <div className="h-[calc(100vh-210px)] custom-map-container">
+            <CustomMap/>
           </div>
-          {/* <div
-            onClick={() => map.toggleFullscreen()}
+          <div
+            onClick={toggleFullscreen}
             className="absolute top-[17px] right-[17px] z-[1000] rounded-[12px] p-[10px] shadow-[0_2px_8px_rgba(0,0,0,0.1)] flex items-center justify-center cursor-pointer transition-all duration-300 ease-in-out"
           >
             <img src="./Stepper.png" alt="Fullscreen" className="w-[42px] h-[42px]" />
-          </div> */}
+          </div>
 
-          <div
+          {/* <div
             id="show-accommodations-btn"
             class="absolute bottom-5 left-1/2 -translate-x-1/2 bg-white px-[15px] py-[10px] rounded-[10px] shadow-[0_3px_12px_rgba(0,0,0,0.15)] text-[#00a0df] text-[12px] flex items-center gap-[10px] z-[999]"
           >
@@ -251,7 +264,7 @@ export default function Index() {
             <label for="accommodation-toggle" class="cursor-pointer select-none">
               Show nearby accommodations
             </label>
-          </div>
+          </div> */}
         </div>
       </div>
 
