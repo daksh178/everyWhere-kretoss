@@ -9,7 +9,7 @@ import {
 } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-
+import { useRef } from "react";
 // Custom icons (replace with your own PNG/SVG icons)
 const houseIcon = new L.Icon({
   iconUrl: "/house.png",
@@ -26,6 +26,7 @@ const buildingIcon = new L.Icon({
 });
 
 export default function CustomMap() {
+  const mapRef = useRef(null);
   const markers = [
     {
       id: 1,
@@ -47,28 +48,50 @@ export default function CustomMap() {
     },
   ];
 
+
+  const toggleFullscreen = () => {
+    const mapEl = mapRef.current?.getContainer();
+    if (!mapEl) return;
+
+    if (!document.fullscreenElement) {
+      mapEl.requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
+  };
+
   return (
-    <MapContainer
-      center={[48.8566, 2.3522]} // Paris center
-      zoom={13}
-      style={{ height: "100%", width: "100%", borderRadius: "8px" }}
-      zoomControl={false} // Disable default top-left zoom
-    >
-      {/* OpenStreetMap tiles */}
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
+    <>
+      <MapContainer
+        center={[48.8566, 2.3522]}
+        zoom={13}
+        style={{ height: "100%", width: "100%", borderRadius: "8px" }}
+        zoomControl={false}
+        ref={mapRef}
+      >
+        {/* OpenStreetMap tiles */}
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
 
-      {/* Custom markers */}
-      {markers.map((m) => (
-        <Marker key={m.id} position={m.position} icon={m.icon}>
-          <Popup>{m.popup}</Popup>
-        </Marker>
-      ))}
+        {/* Custom markers */}
+        {markers.map((m) => (
+          <Marker key={m.id} position={m.position} icon={m.icon}>
+            <Popup>{m.popup}</Popup>
+          </Marker>
+        ))}
 
-      {/* Zoom control at bottom-right */}
-      <ZoomControl position="bottomright" />
-    </MapContainer>
+        {/* Zoom control at bottom-right */}
+        <ZoomControl position="bottomright" />
+      </MapContainer>
+      {/* ✅ Custom fullscreen button */}
+      <div
+        onClick={toggleFullscreen}
+        className="absolute top-[17px] right-[17px] z-[1000] rounded-[12px] p-[10px] shadow-[0_2px_8px_rgba(0,0,0,0.1)] flex items-center justify-center cursor-pointer transition-all duration-300 ease-in-out"
+      >
+        <img src="./Stepper.png" alt="Fullscreen" className="w-[42px] h-[42px]" />
+      </div>
+    </>
   );
 }

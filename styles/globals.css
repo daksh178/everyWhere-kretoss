@@ -3,7 +3,7 @@
 
 body {
   font-family: "Poppins", sans-serif;
-  background-color: #eeeeee;
+  background-color:white;
 }
 
 button {
@@ -26,17 +26,21 @@ body::-webkit-scrollbar-track {
 
 /* global.css */
 .scrollable {
-  scrollbar-width: thin; /* Firefox */
-  scrollbar-color: #9ca3af #f3f4f6; /* thumb color track color */
+  scrollbar-width: thin;
+  /* Firefox */
+  scrollbar-color: #9ca3af #f3f4f6;
+  /* thumb color track color */
 }
 
 /* Chrome/Edge */
 .scrollable::-webkit-scrollbar {
   width: 6px;
 }
+
 .scrollable::-webkit-scrollbar-track {
   background: #f3f4f6;
 }
+
 .scrollable::-webkit-scrollbar-thumb {
   background-color: #9ca3af;
   border-radius: 3px;
@@ -46,7 +50,33 @@ body::-webkit-scrollbar-track {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
 .scrollbar-hide {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.leaflet-control-zoom {
+  border-radius: 10px;
+  overflow: hidden;
+  /* make sure radius applies to both + and - */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.leaflet-control-zoom a {
+  width: 50px !important;
+  height: 33.5px !important;
+  /* split 67px total into two equal buttons */
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 4px !important;
+  background-color: #fff !important;
+  color: #1e90c2 !important;
+  border: none !important;
+  font-size: 20px;
+  /* bigger + / - */
+  font-weight: bold;
 }

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Search } from "lucide-react";
 export default function Navbar() {
     return (
-        <nav className="w-full h-[80px] border border-[#EBEBEB] shadow-sm px-2 flex items-center justify-between bg-white">
+        <nav className="w-full h-[80px] border border-[#EBEBEB] flex items-center justify-between bg-white">
             <div className="flex items-center flex-1">
                 <Image
                     src="/nav/logo.png"
@@ -20,22 +20,26 @@ export default function Navbar() {
                         <input
                             type="text"
                             placeholder="Job name, Sector, Keyword ..."
-                            className="w-[612px] pl-10 pr-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                            className="font-normal text-sm h-[45px] w-[612px] pl-10 pr-4 py-2 rounded-[12px] shadow-[0px_4px_11px_0px_rgba(147,147,147,0.07)] border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
                         />
                     </div>
                 </div>
             </div>
 
             <div className="flex items-center gap-4">
-                <button className="hidden md:block bg-white border border-gray-200 text-[#29ABE2] font-semibold px-4 py-2 rounded-lg hover:bg-blue-50 transition">
+                <button className="w-[160px] h-[45px] hidden md:block bg-white border border-gray-200 text-[#29ABE2] font-poppins font-semibold text-sm leading-none tracking-normal px-4 py-2 rounded-lg hover:bg-blue-50 transition">
                     PUBLISH AN OFFER
                 </button>
+
 
                 <div className="flex items-center gap-3">
                     <img src="/nav/menu.png" alt="Apps" className="cursor-pointer" />
                     <img src="/nav/mail.png" alt="Mail" className="cursor-pointer" />
                     <img src="/nav/bell.png" alt="Notifications" className="cursor-pointer" />
-                    <img src="/nav/circle.png" alt="Refresh" className="cursor-pointer" />
+                    <div class="w-[45px] h-[45px] opacity-100 rounded-[10px] border gap-[10px] border border-[rgba(235,235,235,1)] px-[12px] py-[10px] flex items-center justify-center">
+                        <img src="/nav/circle.png" alt="Refresh" class="cursor-pointer" />
+                    </div>
+
 
                     {/* User Avatar + Chevron */}
                     <div className="flex items-center gap-1 cursor-pointer">

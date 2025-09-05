@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import Layout from '@/components/Layout/Layout'
 import Mainlayout from '@/components/MainLayout/Mainlayout';
 import { MapPin, Clock, Calendar, Star, Globe, Users, Coffee, ChevronLeft, ChevronRight } from 'lucide-react';
+
 import dynamic from "next/dynamic"
 
 const CustomMap = dynamic(() => import("@/components/CustomMap/CustomMap"), {
@@ -12,6 +13,27 @@ export default function jobOfferSeenByUser() {
     const [skillLevel, setSkillLevel] = useState(30);
     const [attachCV, setAttachCV] = useState(false);
     const [needVisa, setNeedVisa] = useState(false);
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const scrollRef = useRef(null);
+    const jobData = [
+        { id: 1, title: "Job Title Will Go Here", company: "Company name here" },
+        { id: 2, title: "Job Title Will Go Here", company: "Company name here" },
+        { id: 3, title: "Job Title Will Go Here", company: "Company name here" },
+        { id: 4, title: "Job Title Will Go Here", company: "Company name here" },
+        { id: 5, title: "Job Title Will Go Here", company: "Company name here" },
+    ];
+
+    const handleScrollLeft = () => {
+        if (scrollRef.current) {
+            scrollRef.current.scrollBy({ left: -280, behavior: 'smooth' });
+        }
+    };
+
+    const handleScrollRight = () => {
+        if (scrollRef.current) {
+            scrollRef.current.scrollBy({ left: 280, behavior: 'smooth' });
+        }
+    };
 
     const handleSkillLevelChange = (event) => {
         setSkillLevel(parseInt(event.target.value));
@@ -544,34 +566,63 @@ export default function jobOfferSeenByUser() {
                             {/* Similar Jobs */}
                             <div className="bg-white mx-auto w-[982px] h-[329px] flex flex-col justify-start items-center bg-global-12 rounded-[24px] shadow-[0px_4px_6px_#75757519] px-[20px] py-[20px]">
                                 <h3 className="font-semibold text-gray-900 mb-4">Similar Jobs</h3>
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                    {[...Array(3)].map((_, i) => (
-                                        <div key={i} className="bg-gradient-to-br from-cyan-50 to-blue-50 rounded-lg p-4">
-                                            <div className="flex items-center mb-3">
-                                                <div className="w-8 h-8 bg-cyan-500 rounded-full flex items-center justify-center mr-3">
-                                                    <span className="text-white text-xs font-bold">E</span>
-                                                </div>
-                                                <div>
-                                                    <p className="font-medium text-sm">Job Title Will Go Here</p>
-                                                    <p className="text-xs text-gray-600">Company name here</p>
-                                                </div>
-                                            </div>
-                                            <button className="w-full flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg text-sm font-medium">
-                                                <img src="/frame.png" alt="Icon" className="w-4 h-4" />
-                                                Apply
-                                            </button>
 
+                                {/* Scrollable Section */}
+                                <div className="bg-background mx-auto w-full max-w-[982px] min-h-[329px] flex flex-col justify-start items-center rounded-[24px] shadow-[0px_4px_6px_hsl(var(--job-shadow))] px-5 py-5 relative">
+                                    {/* Scrollable Section */}
+                                    <div className="relative w-full overflow-hidden">
+                                        <div
+                                            ref={scrollRef}
+                                            className="flex space-x-4 overflow-x-auto scrollbar-hide pb-2"
+                                            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                                        >
+                                            {jobData.map((job) => (
+                                                <div
+                                                    key={job.id}
+                                                    className="min-w-[265px] h-[228px] border border-border rounded-[20px] bg-gradient-to-br from-job-card-gradient-from to-job-card-gradient-to p-4 flex flex-col justify-between"
+                                                >
+                                                    <div className="flex items-center mb-3">
+                                                        <div className="w-12 h-12 rounded-full bg-background flex items-center justify-center mr-3 shadow-sm">
+                                                            <img
+                                                                src="/Group 1000009809.png"
+                                                                alt="Company Logo"
+                                                                className="w-8 h-8 rounded-full object-cover"
+                                                            />
+                                                        </div>
+                                                        <div>
+                                                            <p className="text-job-text-primary font-medium text-sm leading-tight">
+                                                                {job.title}
+                                                            </p>
+                                                            <p className="text-job-text-secondary text-xs mt-1">
+                                                                {job.company}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
+                                                    <button className="w-full flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg text-sm font-medium">
+                                                        <img src="/frame.png" alt="Icon" className="w-4 h-4" />
+                                                        Apply
+                                                    </button>
+                                                </div>
+                                            ))}
                                         </div>
-                                    ))}
-                                </div>
+                                    </div>
 
-                                {/* Navigation Arrows */}
-                                <div className="flex justify-center space-x-2 mt-4">
-                                    <button className="w-8 h-8 bg-gray-200 hover:bg-gray-300 rounded-full flex items-center justify-center">
-                                        <ChevronLeft className="w-4 h-4" />
+                                    {/* Navigation Arrows */}
+                                    <button
+                                        className="absolute top-1/2 left-2 transform -translate-y-1/2 w-[30px] h-[25px] bg-job-nav hover:bg-job-nav-hover rounded-full flex items-center justify-center cursor-pointer transition-colors duration-200 shadow-sm"
+                                        onClick={handleScrollLeft}
+                                        aria-label="Scroll left"
+                                    >
+                                        <ChevronLeft className="w-4 h-4 text-job-text-primary" />
                                     </button>
-                                    <button className="w-8 h-8 bg-gray-200 hover:bg-gray-300 rounded-full flex items-center justify-center">
-                                        <ChevronRight className="w-4 h-4" />
+
+                                    <button
+                                        className="absolute top-1/2 right-2 transform -translate-y-1/2 w-[30px] h-[30px] bg-job-nav hover:bg-job-nav-hover rounded-full flex items-center justify-center cursor-pointer transition-colors duration-200 shadow-sm"
+                                        onClick={handleScrollRight}
+                                        aria-label="Scroll right"
+                                    >
+                                        <ChevronRight className="w-4 h-4 text-job-text-primary" />
                                     </button>
                                 </div>
                             </div>

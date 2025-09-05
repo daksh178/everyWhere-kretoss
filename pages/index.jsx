@@ -48,7 +48,7 @@ export default function Index() {
 
   const filterButtons = [
     { leftImg: "/location.png", text: "Location" },
-    { leftImg: "/contact.png", text: "Contact" },
+    { leftImg: "/contact.png", text: "Contract" },
     { leftImg: "/salary.png", text: "Salary" },
     { leftImg: "/exp.png", text: "Experience" },
     { leftImg: "/language.png", text: "Languages" },
@@ -64,17 +64,17 @@ export default function Index() {
       </div>
 
       {/* Sticky Filter Bar */}
-      <div className="sticky top-[64px] z-40 bg-white shadow-md px-5 py-2 flex items-center gap-4 justify-between">
+      <div className="shadow-[0px_4px_6px_0px_rgba(0,0,0,0.11)] sticky top-[64px] z-40 bg-white px-5 py-2 flex items-center gap-6 justify-between">
         {/* Mobile view (Filter + Save Search side by side) */}
-        <div className="flex sm:hidden w-full gap-2">
+        <div className="flex sm:hidden gap-2 w-[338px] h-[38px] ">
           <button
             onClick={() => setShowMobileFilters(true)}
-            className="w-1/2 flex items-center justify-center gap-2 border border-[#29ABE2] text-[#29ABE2] px-4 py-2 rounded-md"
+            className="w-1/2 flex items-center justify-center gap-2 border border-[#29ABE2] text-[#29ABE2] px-4 py-2 rounded-[10px]"
           >
             <img src="filter.png" alt="filter" className="w-4 h-4" />
             <span className="font-medium">Filters</span>
           </button>
-          <button className="w-1/2 flex items-center justify-center gap-2 bg-[#29ABE2] text-white px-4 py-2 rounded-[10px] shadow hover:bg-[#1e90c2] transition">
+          <button className="font-semibold w-1/2 flex items-center justify-center gap-2 bg-[#29ABE2] text-white px-4 py-2 rounded-[10px] shadow hover:bg-[#1e90c2] transition">
             <img src="savesearch.png" alt="save" className="w-4 h-4" />
             <span className="text-sm font-medium">SAVE SEARCH</span>
           </button>
@@ -82,8 +82,12 @@ export default function Index() {
 
         {/* Desktop view */}
         <div className="hidden sm:flex items-center gap-2 flex-shrink-0">
-          <img src="filter.png" alt="filter" />
-          <span className="text-[#29ABE2]">All Filters</span>
+          <img src="filter.png" alt="filter" className="w-[24px] h-[24px]" />
+          <span className="text-[#29ABE2]  text-sm leading-none tracking-normal text-center">
+            All Filters
+          </span>
+          <div className="w-px h-6 bg-[rgba(235,235,235,1)]"></div>
+
         </div>
 
         {/* Left Arrow (desktop only) */}
@@ -101,15 +105,29 @@ export default function Index() {
           ref={scrollRef}
           className="hidden sm:flex flex-1 gap-2 overflow-x-auto flex-nowrap scrollbar-hide scroll-smooth"
         >
-          {filterButtons.map((btn, idx) => (
+          {/* {filterButtons.map((btn, idx) => (
             <HomePgaebutton
               key={idx}
               leftImg={btn.leftImg}
               text={btn.text}
               rightImg={"/dropdown.png"}
-              className="whitespace-nowrap border border-[#EBEBEB] text-[#757575]"
+              className={`w-[136px] h-[38px] font-medium whitespace-nowrap border 
+      ${idx < 2 ? "border-[rgba(97,193,234,1)] text-[rgba(41,171,226,1)]" : "border-[#EBEBEB] text-[#757575]"}`}
+            />
+          ))} */}
+          {filterButtons.map((btn, idx) => (
+            <HomePgaebutton
+              key={idx}
+              leftImg={btn.leftImg}
+              text={btn.text}
+              rightImg={idx < 2 ? "/dropdown.png" : "/arrow forward (Stroke).png"}
+              className={`w-[136px] h-[38px] font-medium whitespace-nowrap border 
+      ${idx < 2
+                  ? "border-[rgba(97,193,234,1)] text-[rgba(41,171,226,1)]"
+                  : "border-[#EBEBEB] text-[#757575]"}`}
             />
           ))}
+
         </div>
 
         {/* Right Arrow (desktop only) */}
@@ -167,14 +185,13 @@ export default function Index() {
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 py-3">
             {/* Left section */}
             <div className="flex items-center gap-4">
-              <div className="flex rounded-md bg-gray-100 p-2 overflow-hidden">
+              <div className="flex rounded-md bg-[#f9f9f9] p-2 overflow-hidden">
                 {/* Jobs button */}
                 <button
                   onClick={() => router.push("/")}
                   className={`px-4 py-2 text-sm font-medium rounded-md 
                                         ${currentPath === "/"
-                      ? "bg-[#29ABE2] text-white"
-                      : "text-black hover:bg-gray-100"
+                      ? "bg-[#29ABE2] text-white" : "text-black"
                     }`}
                 >
                   Jobs
@@ -185,8 +202,8 @@ export default function Index() {
                   onClick={() => router.push("/accomodationsPage")}
                   className={`px-4 py-2 text-sm font-medium rounded-md 
                                         ${currentPath === "/accomodationsPage"
-                      ? "bg-[#FFAB24] text-white"
-                      : "text-black hover:bg-gray-100"
+                      ? "bg-[#FFAB24]"
+                      : "text-black"
                     }`}
                 >
                   Accommodations
@@ -195,7 +212,7 @@ export default function Index() {
             </div>
 
             {/* Right section */}
-            <div className="flex items-center gap-1 text-sm text-gray-600 cursor-pointer">
+            <div className="font-medium flex items-center gap-1 text-sm text-gray-600 cursor-pointer">
               <img src="/sort.png" alt="sort" />
               <span>Sort by:</span>
               <span className="font-medium">Most recent</span>
@@ -208,9 +225,32 @@ export default function Index() {
         </div>
 
         {/* Right Column (fixed map) */}
-        <div className="hidden lg:block w-2/5">
+        <div className="relative hidden lg:block w-2/5">
           <div className="h-[calc(100vh-210px)]">
             <CustomMap />
+          </div>
+          {/* <div
+            onClick={() => map.toggleFullscreen()}
+            className="absolute top-[17px] right-[17px] z-[1000] rounded-[12px] p-[10px] shadow-[0_2px_8px_rgba(0,0,0,0.1)] flex items-center justify-center cursor-pointer transition-all duration-300 ease-in-out"
+          >
+            <img src="./Stepper.png" alt="Fullscreen" className="w-[42px] h-[42px]" />
+          </div> */}
+
+          <div
+            id="show-accommodations-btn"
+            class="absolute bottom-5 left-1/2 -translate-x-1/2 bg-white px-[15px] py-[10px] rounded-[10px] shadow-[0_3px_12px_rgba(0,0,0,0.15)] text-[#00a0df] text-[12px] flex items-center gap-[10px] z-[999]"
+          >
+            <input
+              type="checkbox"
+              id="accommodation-toggle"
+              class="peer appearance-none w-4 h-4 border border-[#00a0df] rounded-sm cursor-pointer 
+           checked:bg-[#00a0df] checked:border-[#00a0df]
+           checked:after:content-['✔'] checked:after:text-white checked:after:text-[10px] 
+           checked:after:flex checked:after:items-center checked:after:justify-center"
+            />
+            <label for="accommodation-toggle" class="cursor-pointer select-none">
+              Show nearby accommodations
+            </label>
           </div>
         </div>
       </div>
